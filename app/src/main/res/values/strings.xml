@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Geektrans</string>
+    <string name="power_by">Geektrans,power by</string>
+    <string name="youdaologo">youdaologo</string>
 </resources>

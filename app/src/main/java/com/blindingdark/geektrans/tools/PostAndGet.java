@@ -23,6 +23,8 @@ public class PostAndGet {
             URL realUrl = new URL(urlNameString);
             // 打开和URL之间的连接
             URLConnection connection = realUrl.openConnection();
+            connection.setConnectTimeout(500);
+            connection.setReadTimeout(500);
             // 建立实际的连接
             connection.connect();
             // 定义 BufferedReader输入流来读取URL的响应
@@ -32,10 +34,10 @@ public class PostAndGet {
                 result += line;
             }
         } catch (Exception e) {
-            if (retryTime < 5) {
+            if (retryTime < 2) {
                 Log.e("servererror", "连接服务器异常……正在重试第" + (retryTime + 1) + "次……");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
@@ -63,6 +65,8 @@ public class PostAndGet {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
             URLConnection conn = realUrl.openConnection();
+            conn.setConnectTimeout(1000);
+            conn.setReadTimeout(1000);
             // 设置通用的请求属性
             conn.setRequestProperty("Cookie", "2.0.2");
             conn.setRequestProperty("Referer", "http://music.163.com");

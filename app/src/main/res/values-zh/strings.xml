@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">极客翻译</string>
+    <string name="power_by">极客翻译，power by</string>
+    <string name="youdaologo">youdaologo</string>
 </resources>

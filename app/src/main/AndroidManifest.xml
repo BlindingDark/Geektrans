@@ -18,7 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GetTransTextActivity"
             android:exported="true"
@@ -31,6 +30,27 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".GetShareReqActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/*" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".TransActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoDisplay">
+
         </activity>
 
     </application>
