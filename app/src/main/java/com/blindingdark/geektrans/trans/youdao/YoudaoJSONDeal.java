@@ -1,6 +1,6 @@
-package com.blindingdark.geektrans.json;
+package com.blindingdark.geektrans.trans.youdao;
 
-import com.blindingdark.geektrans.bean.ReadableTransResults;
+import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
 
 import org.json.JSONException;
 import org.json.JSONObject;

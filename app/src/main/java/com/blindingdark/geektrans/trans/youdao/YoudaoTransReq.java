@@ -1,10 +1,7 @@
-package com.blindingdark.geektrans.trans;
+package com.blindingdark.geektrans.trans.youdao;
 
-import android.os.Handler;
-import android.os.Message;
-
-import com.blindingdark.geektrans.GetTransTextActivity;
 import com.blindingdark.geektrans.api.TransReq;
+import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
 import com.blindingdark.geektrans.tools.PostAndGet;
 
 import java.io.UnsupportedEncodingException;
@@ -13,10 +10,10 @@ import java.net.URLEncoder;
 /**
  * Created by BlindingDark on 2016/8/20 0020.
  */
-public class Youdao implements TransReq {
+public class YoudaoTransReq implements TransReq {
     String query;
 
-    public Youdao(String query) {
+    public YoudaoTransReq(String query) {
         try {
             String encodedQuery = URLEncoder.encode(query, "UTF-8");
             this.query = encodedQuery;
@@ -33,7 +30,10 @@ public class Youdao implements TransReq {
 
         String result;
         result = PostAndGet.sendGet(youdaoAPI, youdaoAPIArgs, 0);
-        return result;
+
+        ReadableTransResults readableResults = YoudaoJSONDeal.getResults(result);// 这里指定解析JSON的类
+
+        return readableResults.toString();
     }
 
 }

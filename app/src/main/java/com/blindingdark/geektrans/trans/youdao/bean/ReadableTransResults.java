@@ -1,4 +1,4 @@
-package com.blindingdark.geektrans.bean;
+package com.blindingdark.geektrans.trans.youdao.bean;
 
 /**
  * Created by BlindingDark on 2016/8/20 0020.

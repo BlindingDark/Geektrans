@@ -9,9 +9,11 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.blindingdark.geektrans.api.TransReq;
-import com.blindingdark.geektrans.trans.Youdao;
-import com.blindingdark.geektrans.bean.ReadableTransResults;
-import com.blindingdark.geektrans.json.YoudaoJSONDeal;
+import com.blindingdark.geektrans.trans.Translator;
+import com.blindingdark.geektrans.trans.youdao.Youdao;
+import com.blindingdark.geektrans.trans.youdao.YoudaoTransReq;
+import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
+import com.blindingdark.geektrans.trans.youdao.YoudaoJSONDeal;
 
 /**
  * Created by BlindingDark on 2016/8/20 0020.
@@ -44,8 +46,9 @@ public class GetTransTextActivity extends AppCompatActivity {
                     //  2016/8/20 0020 200字符提示！！！
                     Toast.makeText(getApplicationContext(), "整句已超出 200 字符", Toast.LENGTH_LONG).show();
                 } else {
-                    TransReqThread myTransReqThread = new TransReqThread(new Youdao(text.toString()));// 这里指定翻译API
-                    new Thread(myTransReqThread).start();
+                    // 2016/8/21 0021 提取方法
+                    Translator.trans(text.toString(), new Youdao(), myHandler);// 这里指定翻译API
+
                 }
 
             }
@@ -53,37 +56,16 @@ public class GetTransTextActivity extends AppCompatActivity {
         finish();
     }
 
-    public class TransReqThread implements Runnable {
-        TransReq transReq;
-        String strResult = "error";
-
-        public TransReqThread(TransReq req) {
-            transReq = req;
-        }
-
-        @Override
-        public void run() {
-            strResult = transReq.getTrans();
-
-            Message message = new Message();
-            message.what = 0;
-            message.obj = strResult;
-
-            GetTransTextActivity.this.myHandler.sendMessage(message);
-        }
-    }
-
 
     Handler myHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    String JSONRes = (String) msg.obj;
-                    if (JSONRes.equals("")) {
+                    String result = (String) msg.obj;
+                    if (TextUtils.isEmpty(result)) {
                         Toast.makeText(getApplicationContext(), "网络异常", Toast.LENGTH_LONG).show();
                     } else {
-                        ReadableTransResults readableResults = YoudaoJSONDeal.getResults(JSONRes);// 这里指定解析JSON的类
-                        Toast.makeText(getApplicationContext(), readableResults.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
                     }
                     break;
             }
