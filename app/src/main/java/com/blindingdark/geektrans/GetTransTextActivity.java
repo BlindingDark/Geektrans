@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.blindingdark.geektrans.trans.Translator;
-import com.blindingdark.geektrans.trans.youdao.Youdao;
 
 /**
  * Created by BlindingDark on 2016/8/20 0020.

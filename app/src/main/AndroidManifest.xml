@@ -31,7 +31,6 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GetShareReqActivity"
             android:exported="true"
@@ -45,14 +44,11 @@
                 <data android:mimeType="text/*" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".TransActivity"
             android:exported="true"
-            android:theme="@android:style/Theme.NoDisplay">
-
-        </activity>
-
+            android:theme="@android:style/Theme.NoDisplay"></activity>
+        <activity android:name=".YoudaoSettingsActivity"></activity>
     </application>
 
 </manifest>

@@ -48,6 +48,7 @@ public class YoudaoJSONDeal {
                 case 40:
                     break;
                 case 50:
+                    translation = "无效的key" + "\n";
                 default:
                     break;
             }

@@ -5,13 +5,27 @@ package com.blindingdark.geektrans.trans.youdao.bean;
  */
 public class ReadableTransResults {
     String translation = "";// 整句翻译
-    String basic = ""; //基本翻译
+    String basic = "";//基本翻译
     String web = "";//网络翻译
 
-    String longLine = "-------------------------------------------------------------------";//分隔线
+    String divisionLine;
+
+    YoudaoSettings youdaoSettings;
+
+    public YoudaoSettings getYoudaoSettings() {
+        return youdaoSettings;
+    }
+
+    public void setYoudaoSettings(YoudaoSettings youdaoSettings) {
+        this.youdaoSettings = youdaoSettings;
+        divisionLine =  youdaoSettings.divisionLine;
+    }
+
+
+
+
 
     public String getTranslation() {
-
         return translation;
     }
 
@@ -46,14 +60,15 @@ public class ReadableTransResults {
         }
         if (!getBasic().equals("")) {
             result += "\n";
-            result += longLine;
+            result += divisionLine;
+            result += "\n";
             result += getBasic();
         }
         if (!getWeb().equals("")) {
             result += "\n";
-            result += longLine;
+            result += divisionLine;
+            result += "\n";
             result += getWeb();
-
         }
 
         return result;
