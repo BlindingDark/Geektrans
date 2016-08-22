@@ -2,7 +2,6 @@ package com.blindingdark.geektrans.trans.youdao;
 
 import android.os.Handler;
 
-import com.blindingdark.geektrans.YoudaoSettingsActivity;
 import com.blindingdark.geektrans.api.TransEngine;
 import com.blindingdark.geektrans.thread.TransReqThread;
 import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;

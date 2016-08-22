@@ -35,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/checkBoxUseYoudao"
-                android:checked="false" />
+                android:checked="false"
+                android:onClick="chooseYoudao" />
 
             <Space
                 android:layout_width="20dp"
@@ -65,7 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/checkBoxUseBaidu"
-                android:checked="false" />
+                android:checked="false"
+                android:onClick="chooseBaidu" />
 
             <Space
                 android:layout_width="20dp"

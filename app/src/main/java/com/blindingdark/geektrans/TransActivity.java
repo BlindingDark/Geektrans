@@ -3,9 +3,9 @@ package com.blindingdark.geektrans;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -14,8 +14,8 @@ import com.blindingdark.geektrans.trans.Translator;
 import com.blindingdark.geektrans.trans.baidu.Baidu;
 import com.blindingdark.geektrans.trans.baidu.BaiduSettingsString;
 import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
-import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
 import com.blindingdark.geektrans.trans.youdao.Youdao;
+import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
 import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;
 
 public class TransActivity extends Activity {

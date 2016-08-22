@@ -2,13 +2,11 @@ package com.blindingdark.geektrans;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import java.util.ArrayList;
 
@@ -21,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
     CheckBox checkBoxYoudao;
     CheckBox checkBoxBaidu;
     ArrayList<CheckBox> checkBoxesEngines = new ArrayList<>();
-
-    Button buttonBaiduSetting;
-    Button buttonYoudaoSetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,34 +45,6 @@ public class MainActivity extends AppCompatActivity {
         if (nowTransEngine.equals(StringMainSettings.baiduTransEngine)){
             checkBoxBaidu.setChecked(true);
         }
-
-        checkBoxYoudao.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    for (CheckBox box : checkBoxesEngines){
-                        box.setChecked(false);
-                    }
-                    checkBoxYoudao.setChecked(true);
-                    editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.youdaoTransEngine);
-                    editor.commit();
-                }
-            }
-        });
-
-        checkBoxBaidu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    for (CheckBox box : checkBoxesEngines){
-                        box.setChecked(false);
-                    }
-                    checkBoxBaidu.setChecked(true);
-                    editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.baiduTransEngine);
-                    editor.commit();
-                }
-            }
-        });
     }
 
     public void jumpToBaiduSettings(View view) {
@@ -96,5 +63,28 @@ public class MainActivity extends AppCompatActivity {
                      /* 启动一个新的Activity */
         this.startActivity(transIntent);
                     /* 关闭当前的Activity */
+    }
+
+    public void chooseYoudao(View view) {
+        if(checkBoxYoudao.isChecked()){
+            for (CheckBox box : checkBoxesEngines){
+                box.setChecked(false);
+            }
+            editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.youdaoTransEngine);
+            editor.commit();
+        }
+        checkBoxYoudao.setChecked(true);
+    }
+
+    public void chooseBaidu(View view) {
+        if(checkBoxBaidu.isChecked()){
+            for (CheckBox box : checkBoxesEngines){
+                box.setChecked(false);
+            }
+            editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.baiduTransEngine);
+            editor.commit();
+        }
+        checkBoxBaidu.setChecked(true);
+
     }
 }

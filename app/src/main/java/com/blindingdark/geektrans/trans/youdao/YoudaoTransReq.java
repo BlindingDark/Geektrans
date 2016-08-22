@@ -1,9 +1,8 @@
 package com.blindingdark.geektrans.trans.youdao;
 
-import com.blindingdark.geektrans.YoudaoSettingsActivity;
 import com.blindingdark.geektrans.api.TransReq;
-import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
 import com.blindingdark.geektrans.tools.PostAndGet;
+import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
 import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;
 
 import java.io.UnsupportedEncodingException;

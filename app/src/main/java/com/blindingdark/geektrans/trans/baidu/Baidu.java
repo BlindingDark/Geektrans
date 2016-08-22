@@ -1,7 +1,6 @@
 package com.blindingdark.geektrans.trans.baidu;
 
 import android.os.Handler;
-import android.os.Message;
 
 import com.blindingdark.geektrans.api.TransEngine;
 import com.blindingdark.geektrans.thread.TransReqThread;
