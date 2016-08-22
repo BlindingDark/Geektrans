@@ -4,9 +4,9 @@ package com.blindingdark.geektrans.trans.youdao.bean;
  * Created by BlindingDark on 2016/8/21 0021.
  */
 public class YoudaoSettings {
-    public  String key;
-    public  String keyfrom ;
-    public  String divisionLine ;
+    String key;
+    String keyfrom;
+    String divisionLine;
 
     public YoudaoSettings(String key, String keyfrom, String divisionLine) {
         this.key = key;

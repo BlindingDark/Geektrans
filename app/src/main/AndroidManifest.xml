@@ -47,8 +47,9 @@
         <activity
             android:name=".TransActivity"
             android:exported="true"
-            android:theme="@android:style/Theme.NoDisplay"></activity>
-        <activity android:name=".YoudaoSettingsActivity"></activity>
+            android:theme="@android:style/Theme.NoDisplay" />
+        <activity android:name=".YoudaoSettingsActivity" />
+        <activity android:name=".BaiduSettingsActivity"></activity>
     </application>
 
 </manifest>

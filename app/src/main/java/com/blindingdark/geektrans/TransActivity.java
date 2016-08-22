@@ -11,7 +11,10 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.blindingdark.geektrans.trans.Translator;
-import com.blindingdark.geektrans.trans.youdao.Settings;
+import com.blindingdark.geektrans.trans.baidu.Baidu;
+import com.blindingdark.geektrans.trans.baidu.BaiduSettingsString;
+import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
+import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
 import com.blindingdark.geektrans.trans.youdao.Youdao;
 import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;
 
@@ -30,11 +33,28 @@ public class TransActivity extends Activity {
     }
 
     void trans(String req) {
-        String key = preferences.getString(Settings.key,"");
-        String keyfrom = preferences.getString(Settings.keyfrom,"");
-        String divLine = preferences.getString(Settings.divisionLine,Settings.defaultDivLine);
 
-        Translator.trans(req, new Youdao(new YoudaoSettings(key,keyfrom,divLine)), myHandler);// 这里指定翻译API
+        String nowTransEngine = preferences.getString(StringMainSettings.nowTransEngine, StringMainSettings.youdaoTransEngine);
+
+        if (nowTransEngine.equals(StringMainSettings.youdaoTransEngine)) {
+            String key = preferences.getString(YoudaoSettingsString.youdaoKey, "");
+            String keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "");
+            String divLine = preferences.getString(YoudaoSettingsString.divisionLine, YoudaoSettingsString.defaultDivLine);
+
+            Translator.trans(req, new Youdao(new YoudaoSettings(key, keyfrom, divLine)), myHandler);
+
+        }
+
+        if (nowTransEngine.equals(StringMainSettings.baiduTransEngine)) {
+            String BDAPPID = preferences.getString(BaiduSettingsString.baiduAppId, "");
+            String BDKey = preferences.getString(BaiduSettingsString.baiduKey, "");
+            String BDFrom = preferences.getString(BaiduSettingsString.baiduFrom, "auto");
+            String BDTo = preferences.getString(BaiduSettingsString.baiduTo, "zh");
+
+            Translator.trans(req, new Baidu(new BaiduSettings(BDAPPID, BDKey, BDFrom, BDTo)), myHandler);
+        }
+
+
     }
 
     private void processIntent(Intent intent) {

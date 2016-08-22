@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.blindingdark.geektrans.trans.youdao.Settings;
+import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
 
 public class YoudaoSettingsActivity extends AppCompatActivity {
 
@@ -29,17 +28,17 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         editTextKey = (EditText) findViewById(R.id.edtTxtApiKey);
-        String key = preferences.getString(Settings.key,"");
+        String key = preferences.getString(YoudaoSettingsString.youdaoKey,"");
         editTextKey.setText(key);
         editTextKey.addTextChangedListener(keyTextWatcher);
 
         editTextKeyfrom = (EditText) findViewById(R.id.edtTxtApiKeyfrom);
-        String keyfrom = preferences.getString(Settings.keyfrom,"");
+        String keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom,"");
         editTextKeyfrom.setText(keyfrom);
         editTextKeyfrom.addTextChangedListener(keyfromTextWatcher);
 
         editTextDivLine = (EditText) findViewById(R.id.edtTxtDivisionLine);
-        String divLine = preferences.getString(Settings.divisionLine,Settings.defaultDivLine);
+        String divLine = preferences.getString(YoudaoSettingsString.divisionLine, YoudaoSettingsString.defaultDivLine);
         editTextDivLine.setText(divLine);
         editTextDivLine.addTextChangedListener(divTextWatcher);
 
@@ -59,7 +58,7 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            editor.putString(Settings.key,editTextKey.getText().toString());
+            editor.putString(YoudaoSettingsString.youdaoKey,editTextKey.getText().toString());
             editor.commit();
 
         }
@@ -78,7 +77,7 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            editor.putString(Settings.keyfrom,editTextKeyfrom.getText().toString());
+            editor.putString(YoudaoSettingsString.youdaoKeyfrom,editTextKeyfrom.getText().toString());
             editor.commit();
         }
     };
@@ -97,7 +96,7 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            editor.putString(Settings.divisionLine,editTextDivLine.getText().toString());
+            editor.putString(YoudaoSettingsString.divisionLine,editTextDivLine.getText().toString());
             editor.commit();
 
         }

@@ -1,5 +1,34 @@
 <resources>
     <string name="app_name">Geektrans</string>
-    <string name="power_by">power by</string>
+    <string name="powered_by">powered by</string>
     <string name="youdaologo">youdaologo</string>
+    <string name="baidulogo">baidulogo</string>
+    <string name="auto">自动检测-auto</string>
+    <string name="en">英语-en</string>
+    <string name="yue">粤语-yue</string>
+    <string name="wyw">文言文-wyw</string>
+    <string name="zh">中文-zh</string>
+    <string name="jp">日语-jp</string>
+    <string name="fra">法语-fra</string>
+    <string name="kor">韩语-kor</string>
+    <string name="spa">西班牙语-spa</string>
+    <string name="th">泰语-th</string>
+    <string name="ara">阿拉伯语-ara</string>
+    <string name="ru">俄语-ru</string>
+    <string name="pt">葡萄牙语-pt</string>
+    <string name="de">德语-de</string>
+    <string name="it">意大利语-it</string>
+    <string name="el">希腊语-el</string>
+    <string name="nl">荷兰语-nl</string>
+    <string name="pl">波兰语-pl</string>
+    <string name="bul">保加利亚语-bul</string>
+    <string name="est">爱沙尼亚语-est</string>
+    <string name="dan">丹麦语-dan</string>
+    <string name="fin">芬兰语-fin</string>
+    <string name="cs">捷克语-cs</string>
+    <string name="rom">罗马尼亚语-rom</string>
+    <string name="slo">斯洛文尼亚语-slo</string>
+    <string name="swe">瑞典语-swe</string>
+    <string name="hu">匈牙利语-hu</string>
+    <string name="cht">繁体中文-cht</string>
 </resources>

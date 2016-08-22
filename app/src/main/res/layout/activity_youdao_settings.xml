@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/power_by"
+            android:text="@string/powered_by"
             android:id="@+id/textView"
             android:textSize="20dp"
             android:layout_alignParentLeft="true"

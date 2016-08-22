@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="BDFromLanguage">
+        <item>@string/auto</item>
+        <item>@string/zh</item>
+        <item>@string/cht</item>
+        <item>@string/en</item>
+        <item>@string/yue</item>
+        <item>@string/wyw</item>
+        <item>@string/jp</item>
+        <item>@string/kor</item>
+        <item>@string/fra</item>
+        <item>@string/spa</item>
+        <item>@string/th</item>
+        <item>@string/ara</item>
+        <item>@string/ru</item>
+        <item>@string/pt</item>
+        <item>@string/de</item>
+        <item>@string/it</item>
+        <item>@string/el</item>
+        <item>@string/nl</item>
+        <item>@string/pl</item>
+        <item>@string/bul</item>
+        <item>@string/est</item>
+        <item>@string/dan</item>
+        <item>@string/fin</item>
+        <item>@string/cs</item>
+        <item>@string/rom</item>
+        <item>@string/slo</item>
+        <item>@string/swe</item>
+        <item>@string/hu</item>
+    </string-array>
+    <string-array name="BDToLanguage">
+        <item>@string/zh</item>
+        <item>@string/cht</item>
+        <item>@string/en</item>
+        <item>@string/yue</item>
+        <item>@string/wyw</item>
+        <item>@string/jp</item>
+        <item>@string/kor</item>
+        <item>@string/fra</item>
+        <item>@string/spa</item>
+        <item>@string/th</item>
+        <item>@string/ara</item>
+        <item>@string/ru</item>
+        <item>@string/pt</item>
+        <item>@string/de</item>
+        <item>@string/it</item>
+        <item>@string/el</item>
+        <item>@string/nl</item>
+        <item>@string/pl</item>
+        <item>@string/bul</item>
+        <item>@string/est</item>
+        <item>@string/dan</item>
+        <item>@string/fin</item>
+        <item>@string/cs</item>
+        <item>@string/rom</item>
+        <item>@string/slo</item>
+        <item>@string/swe</item>
+        <item>@string/hu</item>
+    </string-array>
+
+</resources>
