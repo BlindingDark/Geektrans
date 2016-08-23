@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.blindingdark.geektrans.tools.MyToast;
 import com.blindingdark.geektrans.trans.Translator;
 import com.blindingdark.geektrans.trans.baidu.Baidu;
 import com.blindingdark.geektrans.trans.baidu.BaiduSettingsString;
@@ -23,6 +24,12 @@ public class TransActivity extends Activity {
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
+    public void setToastTime(String stringToastTime) {
+        this.toastTime = (int) Float.parseFloat(stringToastTime) * 1000;
+    }
+
+    int toastTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,8 @@ public class TransActivity extends Activity {
             String key = preferences.getString(YoudaoSettingsString.youdaoKey, "");
             String keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "");
             String divLine = preferences.getString(YoudaoSettingsString.divisionLine, YoudaoSettingsString.defaultDivLine);
+            String stringToastTime = preferences.getString(YoudaoSettingsString.youdaoToastTime,YoudaoSettingsString.youdaoDefToastTime);
+            this.setToastTime(stringToastTime);
 
             Translator.trans(req, new Youdao(new YoudaoSettings(key, keyfrom, divLine)), myHandler);
 
@@ -50,6 +59,8 @@ public class TransActivity extends Activity {
             String BDKey = preferences.getString(BaiduSettingsString.baiduKey, "");
             String BDFrom = preferences.getString(BaiduSettingsString.baiduFrom, "auto");
             String BDTo = preferences.getString(BaiduSettingsString.baiduTo, "zh");
+            String stringToastTime = preferences.getString(BaiduSettingsString.baiduToastTime,BaiduSettingsString.defBaiduToastTime);
+            this.setToastTime(stringToastTime);
 
             Translator.trans(req, new Baidu(new BaiduSettings(BDAPPID, BDKey, BDFrom, BDTo)), myHandler);
         }
@@ -69,9 +80,9 @@ public class TransActivity extends Activity {
                 case 0:
                     String result = (String) msg.obj;
                     if (TextUtils.isEmpty(result)) {
-                        Toast.makeText(getApplicationContext(), "网络异常", Toast.LENGTH_LONG).show();
+                        MyToast.makeText(getApplicationContext(), "网络异常", toastTime).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                        MyToast.makeText(getApplicationContext(), result, toastTime).show();
                     }
                     break;
             }

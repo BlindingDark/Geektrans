@@ -8,4 +8,6 @@ public class BaiduSettingsString {
     public static String baiduKey = "baiduKey";
     public static String baiduFrom = "baiduFrom";
     public static String baiduTo = "baiduTo";
+    public static String baiduToastTime = "baiduToastTime";
+    public static final String defBaiduToastTime = "3.1";
 }

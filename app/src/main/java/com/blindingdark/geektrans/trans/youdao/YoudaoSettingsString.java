@@ -9,4 +9,7 @@ public class YoudaoSettingsString {
     public static String divisionLine = "divisionLine";
 
     public static String defaultDivLine = "(づ￣ 3￣)づ ";
+
+    public static final String youdaoToastTime = "youdaoToastTime";
+    public static final String youdaoDefToastTime = "5.532";
 }

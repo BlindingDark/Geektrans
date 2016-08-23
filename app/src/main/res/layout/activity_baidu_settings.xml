@@ -151,5 +151,30 @@
 
         </LinearLayout>
 
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="155dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="气泡时间："
+                android:id="@+id/textView12" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextBaiduToastTime"
+                android:hint="单位：秒"
+                android:singleLine="true"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

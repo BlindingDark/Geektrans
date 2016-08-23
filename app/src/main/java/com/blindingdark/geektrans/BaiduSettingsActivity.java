@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.blindingdark.geektrans.tools.Number;
 import com.blindingdark.geektrans.trans.baidu.BaiduSettingsString;
 
 
@@ -20,6 +21,7 @@ public class BaiduSettingsActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     EditText editTextBDAPPID;
     EditText editTextBDKey;
+    EditText editTextBDToastTime;
     Spinner spinnerBDFrom;
     Spinner spinnerBDTo;
 
@@ -41,6 +43,13 @@ public class BaiduSettingsActivity extends AppCompatActivity {
         String key = preferences.getString(BaiduSettingsString.baiduKey, "");
         editTextBDKey.setText(key);
         editTextBDKey.addTextChangedListener(bdKeyTextWatcher);
+
+
+        editTextBDToastTime = (EditText) findViewById(R.id.editTextBaiduToastTime);
+        String bdToastTime = preferences.getString(BaiduSettingsString.baiduToastTime,BaiduSettingsString.defBaiduToastTime);
+        editTextBDToastTime.setText(bdToastTime);
+        editTextBDToastTime.addTextChangedListener(bdToastTimeWatcher);
+
 
 
         spinnerBDFrom = (Spinner) findViewById(R.id.BDLangFromSpinner);
@@ -112,6 +121,31 @@ public class BaiduSettingsActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
             editor.putString(BaiduSettingsString.baiduKey, editTextBDKey.getText().toString());
             editor.commit();
+        }
+    };
+
+    TextWatcher bdToastTimeWatcher=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            String time = editTextBDToastTime.getText().toString();
+
+            // 检测是否是合法数字
+            if (Number.isLegalToastTime(time)) {
+                editor.putString(BaiduSettingsString.baiduToastTime, time);
+                editor.commit();
+            }
+
         }
     };
 }
