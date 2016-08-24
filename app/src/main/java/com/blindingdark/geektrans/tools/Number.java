@@ -35,16 +35,4 @@ public class Number {
 
     }
 
-    public static void main(String[] args) {
-        String time = "1.9999999";
-        if (Number.isDecimal(time)) {
-            if (Float.parseFloat(time) != 0) {
-                if (Float.parseFloat(time) * 1000 >= 1) {
-                    int a = (int) Float.parseFloat(time) * 1000;
-                    System.out.print(a);
-                }
-            }
-        }
-
-    }
 }

@@ -54,6 +54,7 @@ public class YoudaoJSONDeal {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            return readableTransResults;
         }
 
         if (!translation.equals("")) {

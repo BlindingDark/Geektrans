@@ -1,5 +1,6 @@
 package com.blindingdark.geektrans.api;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 
 
@@ -11,5 +12,5 @@ public interface TransEngine {
      * @param req
      * @param handler
      */
-    void trans(String req, Handler handler);
+    void trans(String req, Handler handler,SharedPreferences preferences);
 }

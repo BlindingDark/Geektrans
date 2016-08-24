@@ -1,5 +1,6 @@
 package com.blindingdark.geektrans.trans.youdao;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.blindingdark.geektrans.api.TransEngine;
@@ -17,7 +18,7 @@ public class Youdao implements TransEngine {
     }
 
     @Override
-    public void trans(String req, Handler handler) {
-        new Thread(new TransReqThread(new YoudaoTransReq(settings,req),handler)).start();
+    public void trans(String req, Handler handler,SharedPreferences preferences) {
+        new Thread(new TransReqThread(new YoudaoTransReq(settings,req),handler,preferences)).start();
     }
 }

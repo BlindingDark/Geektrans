@@ -74,7 +74,7 @@ public final class MyToast {
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                //        | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
         params.format = android.graphics.PixelFormat.TRANSLUCENT;
         params.type = WindowManager.LayoutParams.TYPE_TOAST;
@@ -174,17 +174,20 @@ public final class MyToast {
         return isShowing;
     }
 
-    public void setDuration(long durationMillis) {
+    public MyToast setDuration(long durationMillis) {
         this.duration = durationMillis;
+        return this;
     }
 
-    public void setView(View view) {
+    public MyToast setView(View view) {
         removeView(false);
         toastView = view;
+        return this;
     }
 
-    public void setText(CharSequence text) {
+    public MyToast setText(CharSequence text) {
         this.text = text;
+        return this;
     }
 
     public void setText(int resId) {

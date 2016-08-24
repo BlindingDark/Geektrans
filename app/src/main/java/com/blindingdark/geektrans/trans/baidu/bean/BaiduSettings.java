@@ -4,10 +4,10 @@ package com.blindingdark.geektrans.trans.baidu.bean;
  * Created by BlindingDark on 2016/8/22 0022.
  */
 public class BaiduSettings {
-    String baiduAppId;
-    String baiduKey;
-    String baiduFrom;
-    String baiduTo;
+    String baiduAppId = "";
+    String baiduKey = "";
+    String baiduFrom = "";
+    String baiduTo = "";
 
     public BaiduSettings(String baiduAppId, String baiduKey, String baiduFrom, String baiduTo) {
         this.baiduAppId = baiduAppId;

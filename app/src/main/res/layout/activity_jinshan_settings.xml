@@ -22,7 +22,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="34dp"
             android:text="@string/powered_by"
             android:id="@+id/textView"
             android:textSize="20sp"
@@ -38,8 +38,8 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
-            android:src="@drawable/baidulogo"
-            android:contentDescription="@string/baidulogo"
+            android:src="@drawable/jinshanlogo"
+            android:contentDescription="@string/jinshanlogo"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/textView"
             android:layout_toEndOf="@+id/textView"
@@ -61,8 +61,8 @@
                 android:layout_width="155dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="APP ID："
-                android:id="@+id/textViewBaiduKey"
+                android:text="Key："
+                android:id="@+id/textViewJinshanKey"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -70,85 +70,13 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/BDAPPID"
+                android:id="@+id/editTextJinshanKey"
                 android:layout_alignTop="@+id/textViewJinshanKey"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/linearLayout"
                 android:layout_alignStart="@+id/linearLayout"
                 android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top">
-
-            <TextView
-                android:layout_width="155dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="密钥："
-                android:id="@+id/textView7" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/BDKey"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="15dp" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="155dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="源语言："
-                android:id="@+id/textView6" />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/BDLangFromSpinner"
-                android:layout_weight="1"
-                android:spinnerMode="dropdown"
-                android:entries="@array/BDFromLanguage"/>
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="18dp" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="155dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="目标语言："
-                android:id="@+id/textView8" />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/BDLangToSpinner"
-                android:layout_weight="1"
-                android:spinnerMode="dropdown"
-                android:entries="@array/BDToLanguage"/>
-
         </LinearLayout>
 
         <Space
@@ -165,15 +93,59 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="气泡时间："
-                android:id="@+id/textView12" />
+                android:id="@+id/textViewJinshanToastTime" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTextBaiduToastTime"
+                android:id="@+id/editTextJinshanToastTime"
                 android:hint="单位：秒"
                 android:singleLine="true"
                 android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="155dp"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="混搭发音引擎："
+                android:id="@+id/textView7" />
+
+            <Switch
+                android:layout_width="110dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/switchJinshanSoundRemix"
+                android:checked="false"
+                android:layout_weight="0.80" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="在无发音引擎中尝试金山发音"
+                android:id="@+id/textView13" />
         </LinearLayout>
 
     </LinearLayout>

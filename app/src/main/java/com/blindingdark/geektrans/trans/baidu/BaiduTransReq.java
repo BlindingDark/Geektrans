@@ -1,6 +1,7 @@
 package com.blindingdark.geektrans.trans.baidu;
 
 import com.blindingdark.geektrans.api.TransReq;
+import com.blindingdark.geektrans.bean.Result;
 import com.blindingdark.geektrans.tools.MD5;
 import com.blindingdark.geektrans.tools.PostAndGet;
 import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
@@ -16,8 +17,10 @@ public class BaiduTransReq implements TransReq {
     String req;
     String sign;
     long salt;
+    Result beanResult = new Result();
 
     public BaiduTransReq(BaiduSettings baiduSettings, String req) {
+        beanResult.setOriginalReq(req);
         this.baiduSettings = baiduSettings;
         this.req = req;
         salt = System.currentTimeMillis();
@@ -27,7 +30,7 @@ public class BaiduTransReq implements TransReq {
     }
 
     @Override
-    public String getTrans() {
+    public Result getTrans() {
         String baiduTransURL = "http://api.fanyi.baidu.com/api/trans/vip/translate";
         try {
             req = URLEncoder.encode(req, "UTF-8");
@@ -41,8 +44,9 @@ public class BaiduTransReq implements TransReq {
         result = PostAndGet.sendGet(baiduTransURL, query, 0);
 
         String readableResults = BaiduJSONDeal.getResults(result);// 这里指定解析JSON的类
+        beanResult.setStringResult(readableResults).setWhat(0);
 
-        return readableResults;
+        return beanResult;
 
     }
 

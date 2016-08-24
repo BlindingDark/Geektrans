@@ -29,17 +29,14 @@ public class BaiduJSONDeal {
             }
 
             if (!transJSON.isNull("trans_result")) {
-                for (int i = 0; i < transJSON.getJSONArray("trans_result").length(); i++) {
-                    JSONObject ob = transJSON.getJSONArray("trans_result").getJSONObject(i);
-                    //String temp = ob.getString("dst");
-                   return ob.getString("dst");
-                }
-
+                JSONObject ob = transJSON.getJSONArray("trans_result").getJSONObject(0);
+                return ob.getString("dst");
             }
 
 
         } catch (JSONException e) {
             e.printStackTrace();
+            return result;
         }
         return result;
     }

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.blindingdark.geektrans.MainActivity">
+    tools:context=".activitys.settings.MainActivity">
 
 
     <LinearLayout
@@ -79,6 +79,38 @@
                 android:text="设置"
                 android:id="@+id/buttonJumpToBaiduSettings"
                 android:onClick="jumpToBaiduSettings" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="金山词霸"
+                android:id="@+id/textView11" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxUseJinshan"
+                android:checked="false"
+                android:onClick="chooseJinshan" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="fill_parent" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:id="@+id/buttonJumpToJinshanSettings"
+                android:onClick="jumpToJinshanSettings" />
         </LinearLayout>
     </LinearLayout>
 

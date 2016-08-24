@@ -1,5 +1,6 @@
 package com.blindingdark.geektrans.trans.baidu;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.blindingdark.geektrans.api.TransEngine;
@@ -17,8 +18,8 @@ public class Baidu implements TransEngine {
     }
 
     @Override
-    public void trans(String req, Handler handler) {
-        new Thread(new TransReqThread(new BaiduTransReq(this.baiduSettings, req),handler)).start();
+    public void trans(String req, Handler handler,SharedPreferences preferences) {
+        new Thread(new TransReqThread(new BaiduTransReq(this.baiduSettings, req),handler,preferences)).start();
 
     }
 }
