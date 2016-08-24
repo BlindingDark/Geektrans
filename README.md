@@ -1,24 +1,28 @@
 # Geektrans
 极客翻译
-使用有道翻译和百度翻译 api 的简易翻译工具。
-看心情增加更多 api 支持（计划增加金山 api 支持）。
+使用有道翻译和百度翻译和金山 api 的简易翻译工具。
+看心情增加更多 api 支持（计划增加bing api 支持）。
 各位有什么不错的免费 api 也可以推荐一下。
 
-想使用本 app 首先你要去有道/百度翻译 api 平台申请自己的 api
+想使用本 app 首先你要去有道/百度翻译/金山词霸 api 平台申请自己的 api
 
 http://fanyi.youdao.com/openapi?path=data-mode
 
 http://api.fanyi.baidu.com/api/trans/product/index
 
+http://open.iciba.com/?c=api（要点击左侧词霸查词）
+
 随意填写信息，非常容易申请，一般是秒速申请成功。
 
 申请成功后把收到的密钥填写进相应位置即可开始使用。
 
-如果不想申请这里提供两个
+如果不想申请这里提供：
 
 有道API key：1063467812；keyfrom：geektrans。
 
 百度appid：2015063000000001；密钥：12345678。
+
+金山Key：609DBC0C963B07A3E1E93B5890D58EBC
 
 目前有两种使用方法：
 
