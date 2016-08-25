@@ -2,6 +2,7 @@ package com.blindingdark.geektrans.trans.youdao;
 
 import com.blindingdark.geektrans.api.TransReq;
 import com.blindingdark.geektrans.bean.Result;
+import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.PostAndGet;
 import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
 import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;

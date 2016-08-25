@@ -3,6 +3,7 @@ package com.blindingdark.geektrans.trans.jinshan;
 import com.blindingdark.geektrans.activitys.TransActivity;
 import com.blindingdark.geektrans.api.TransReq;
 import com.blindingdark.geektrans.bean.Result;
+import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.PostAndGet;
 import com.blindingdark.geektrans.trans.jinshan.bean.JinshanResult;
 import com.blindingdark.geektrans.trans.jinshan.bean.JinshanSettings;
@@ -31,6 +32,7 @@ public class JinshanTransReq implements TransReq {
 
     @Override
     public Result getTrans() {
+
         try {
             req = URLEncoder.encode(req.toLowerCase(), "UTF-8");
         } catch (UnsupportedEncodingException e) {

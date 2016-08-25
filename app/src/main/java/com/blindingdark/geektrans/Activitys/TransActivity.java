@@ -1,6 +1,8 @@
 package com.blindingdark.geektrans.activitys;
 
 import android.app.Activity;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 
 import com.blindingdark.geektrans.R;
 import com.blindingdark.geektrans.bean.Result;
+import com.blindingdark.geektrans.tools.Clip;
+import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.MyToast;
 import com.blindingdark.geektrans.tools.SoundPlayer;
 import com.blindingdark.geektrans.trans.Translator;
@@ -51,6 +55,7 @@ public class TransActivity extends Activity {
     }
 
     void trans(String req) {
+        req = MyStringUnits.filterBlankSpace(req);
 
         String nowTransEngine = preferences.getString(StringMainSettings.nowTransEngine, StringMainSettings.youdaoTransEngine);
 
@@ -62,7 +67,7 @@ public class TransActivity extends Activity {
                 String stringToastTime = preferences.getString(YoudaoSettingsString.youdaoToastTime, YoudaoSettingsString.youdaoDefToastTime);
                 this.setToastTime(stringToastTime);
 
-                Translator.trans(req, new Youdao(new YoudaoSettings(key, keyfrom, divLine)), myHandler,preferences);
+                Translator.trans(req, new Youdao(new YoudaoSettings(key, keyfrom, divLine)), myHandler, preferences);
 
                 break;
             }
@@ -74,7 +79,7 @@ public class TransActivity extends Activity {
                 String stringToastTime = preferences.getString(BaiduSettingsString.baiduToastTime, BaiduSettingsString.defBaiduToastTime);
                 this.setToastTime(stringToastTime);
 
-                Translator.trans(req, new Baidu(new BaiduSettings(BDAPPID, BDKey, BDFrom, BDTo)), myHandler,preferences);
+                Translator.trans(req, new Baidu(new BaiduSettings(BDAPPID, BDKey, BDFrom, BDTo)), myHandler, preferences);
                 break;
             }
 
@@ -83,7 +88,7 @@ public class TransActivity extends Activity {
                 String stringToastTime = preferences.getString(StringJinshanSettings.jinshanToastTime, StringJinshanSettings.defJinshanToastTime);
                 this.setToastTime(stringToastTime);
 
-                Translator.trans(req, new Jinshan(new JinshanSettings(jinshanKey)), myHandler,preferences);
+                Translator.trans(req, new Jinshan(new JinshanSettings(jinshanKey)), myHandler, preferences);
                 break;
             }
         }
@@ -107,6 +112,7 @@ public class TransActivity extends Activity {
                         MyToast.makeText(getApplicationContext(), "极客姬..查询..失败...", 2000).show();
                     } else {
                         MyToast.makeText(getApplicationContext(), result.getStringResult(), toastTime).show();
+                        Clip.copyResult(result.getStringResult(), (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE));
                     }
                     break;
                 }
@@ -139,6 +145,7 @@ public class TransActivity extends Activity {
 
                         MyToast jinshanToast = new MyToast(getApplicationContext());
                         jinshanToast.setView(view).setDuration(toastTime).show();
+                        Clip.copyResult(result.getStringResult(), (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE));
                     }
                     break;
                 }

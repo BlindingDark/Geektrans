@@ -3,6 +3,7 @@ package com.blindingdark.geektrans.trans.baidu;
 import com.blindingdark.geektrans.api.TransReq;
 import com.blindingdark.geektrans.bean.Result;
 import com.blindingdark.geektrans.tools.MD5;
+import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.PostAndGet;
 import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
 
