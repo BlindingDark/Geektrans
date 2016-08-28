@@ -61,34 +61,22 @@ public class TransActivity extends Activity {
 
         switch (nowTransEngine) {
             case StringMainSettings.youdaoTransEngine: {
-                String key = preferences.getString(YoudaoSettingsString.youdaoKey, "");
-                String keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "");
-                String divLine = preferences.getString(YoudaoSettingsString.divisionLine, YoudaoSettingsString.defaultDivLine);
                 String stringToastTime = preferences.getString(YoudaoSettingsString.youdaoToastTime, YoudaoSettingsString.youdaoDefToastTime);
                 this.setToastTime(stringToastTime);
-
-                Translator.trans(req, new Youdao(new YoudaoSettings(key, keyfrom, divLine)), myHandler, preferences);
-
+                Translator.trans(req, new Youdao(new YoudaoSettings(preferences)), myHandler, preferences);
                 break;
             }
             case StringMainSettings.baiduTransEngine: {
-                String BDAPPID = preferences.getString(BaiduSettingsString.baiduAppId, "");
-                String BDKey = preferences.getString(BaiduSettingsString.baiduKey, "");
-                String BDFrom = preferences.getString(BaiduSettingsString.baiduFrom, "auto");
-                String BDTo = preferences.getString(BaiduSettingsString.baiduTo, "zh");
                 String stringToastTime = preferences.getString(BaiduSettingsString.baiduToastTime, BaiduSettingsString.defBaiduToastTime);
                 this.setToastTime(stringToastTime);
-
-                Translator.trans(req, new Baidu(new BaiduSettings(BDAPPID, BDKey, BDFrom, BDTo)), myHandler, preferences);
+                Translator.trans(req, new Baidu(new BaiduSettings(preferences)), myHandler, preferences);
                 break;
             }
 
             case StringMainSettings.jinshanTransEngine: {
-                String jinshanKey = preferences.getString(StringJinshanSettings.jinshanKey, "");
                 String stringToastTime = preferences.getString(StringJinshanSettings.jinshanToastTime, StringJinshanSettings.defJinshanToastTime);
                 this.setToastTime(stringToastTime);
-
-                Translator.trans(req, new Jinshan(new JinshanSettings(jinshanKey)), myHandler, preferences);
+                Translator.trans(req, new Jinshan(new JinshanSettings(preferences)), myHandler, preferences);
                 break;
             }
         }

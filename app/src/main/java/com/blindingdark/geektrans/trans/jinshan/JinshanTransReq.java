@@ -49,6 +49,7 @@ public class JinshanTransReq implements TransReq {
             beanResult.setWhat(TransActivity.haveSoundToast);
             beanResult.setSoundURLs(jinshanResult.getSoundURLs());
         }
+        beanResult.setFromEngineName(Jinshan.engineName);
         beanResult.setStringResult(jinshanResult.toString());
 
         return beanResult;

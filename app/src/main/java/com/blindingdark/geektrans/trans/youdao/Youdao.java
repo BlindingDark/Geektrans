@@ -12,13 +12,23 @@ import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;
  */
 public class Youdao implements TransEngine {
     YoudaoSettings settings;
+    public final static String engineName = "youdao";
 
     public Youdao(YoudaoSettings settings) {
         this.settings = settings;
     }
 
+    public Youdao() {
+
+    }
+
     @Override
-    public void trans(String req, Handler handler,SharedPreferences preferences) {
-        new Thread(new TransReqThread(new YoudaoTransReq(settings,req),handler,preferences)).start();
+    public void trans(String req, Handler handler, SharedPreferences preferences) {
+        new Thread(new TransReqThread(new YoudaoTransReq(settings, req), handler, preferences)).start();
+    }
+
+    @Override
+    public String getEngineName() {
+        return engineName;
     }
 }

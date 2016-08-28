@@ -1,5 +1,7 @@
 package com.blindingdark.geektrans.trans.youdao.bean;
 
+import java.util.ArrayList;
+
 /**
  * Created by BlindingDark on 2016/8/20 0020.
  */
@@ -7,6 +9,24 @@ public class ReadableTransResults {
     String translation = "";// 整句翻译
     String basic = "";//基本翻译
     String web = "";//网络翻译
+
+    public ArrayList<String> getSoundURLs() {
+        return soundURLs;
+    }
+
+    public void addSoundURL(String soundURL) {
+        this.soundURLs.add(soundURL);
+    }
+
+    public String getDivisionLine() {
+        return divisionLine;
+    }
+
+    public void setDivisionLine(String divisionLine) {
+        this.divisionLine = divisionLine;
+    }
+
+    ArrayList<String> soundURLs = new ArrayList<>();
 
     String divisionLine;
 
@@ -18,11 +38,8 @@ public class ReadableTransResults {
 
     public void setYoudaoSettings(YoudaoSettings youdaoSettings) {
         this.youdaoSettings = youdaoSettings;
-        divisionLine =  youdaoSettings.divisionLine;
+        divisionLine = youdaoSettings.divisionLine;
     }
-
-
-
 
 
     public String getTranslation() {

@@ -39,7 +39,7 @@ public class YoudaoTransReq implements TransReq {
         }
 
         String youdaoAPI = "http://fanyi.youdao.com/openapi.do";
-        String youdaoAPIArgs = "keyfrom=" + youdaoSettings.getKeyfrom() + "&key=" + youdaoSettings.getKey() + "&type=data&doctype=json&version=1.1&q=" + query;
+        String youdaoAPIArgs = "keyfrom=" + youdaoSettings.getKeyfrom() + "&key=" + youdaoSettings.getKey() + "&type=data&doctype=json&version=1.2&q=" + query;
 
         String result;
         result = PostAndGet.sendGet(youdaoAPI, youdaoAPIArgs, 0);
@@ -47,7 +47,14 @@ public class YoudaoTransReq implements TransReq {
         ReadableTransResults readableResults = YoudaoJSONDeal.getResults(result);// 这里指定解析JSON的类
         readableResults.setYoudaoSettings(youdaoSettings);
 
-        beanResult.setWhat(0);
+        if (readableResults.getSoundURLs().isEmpty()) {
+            beanResult.setWhat(0);
+        } else {
+            beanResult.setSoundURLs(readableResults.getSoundURLs());
+            beanResult.setWhat(1);
+        }
+
+        beanResult.setFromEngineName(Youdao.engineName);
         beanResult.setStringResult(readableResults.toString());
         return beanResult;
     }

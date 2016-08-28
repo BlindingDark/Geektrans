@@ -45,6 +45,8 @@ public class BaiduTransReq implements TransReq {
         result = PostAndGet.sendGet(baiduTransURL, query, 0);
 
         String readableResults = BaiduJSONDeal.getResults(result);// 这里指定解析JSON的类
+
+        beanResult.setFromEngineName(Baidu.engineName);
         beanResult.setStringResult(readableResults).setWhat(0);
 
         return beanResult;

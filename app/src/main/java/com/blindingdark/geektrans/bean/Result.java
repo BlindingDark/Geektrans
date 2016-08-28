@@ -19,7 +19,7 @@ public class Result {
 
     int what = 0;
     String stringResult = "";
-    ArrayList<String> soundURLs;
+    ArrayList<String> soundURLs = new ArrayList<>();
 
     public int getWhat() {
         return what;
@@ -40,9 +40,9 @@ public class Result {
     }
 
     public ArrayList<String> getSoundURLs() {
-        if (soundURLs!=null) {
+        if (soundURLs != null) {
             return soundURLs;
-        }else {
+        } else {
             return new ArrayList<>();
         }
     }
@@ -50,5 +50,16 @@ public class Result {
     public Result setSoundURLs(ArrayList<String> soundURLs) {
         this.soundURLs = soundURLs;
         return this;
+    }
+
+    String fromEngineName = "";
+
+    public void setFromEngineName(String fromEngineName) {
+        this.fromEngineName = fromEngineName;
+    }
+
+    public String getFromEngineName() {
+
+        return fromEngineName;
     }
 }

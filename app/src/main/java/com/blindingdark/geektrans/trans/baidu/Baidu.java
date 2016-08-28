@@ -12,9 +12,14 @@ import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
  */
 public class Baidu implements TransEngine {
     BaiduSettings baiduSettings;
-
+    public final static String engineName = "baidu";
     public Baidu(BaiduSettings baiduSettings) {
         this.baiduSettings = baiduSettings;
+    }
+
+    @Override
+    public String getEngineName() {
+        return engineName;
     }
 
     @Override

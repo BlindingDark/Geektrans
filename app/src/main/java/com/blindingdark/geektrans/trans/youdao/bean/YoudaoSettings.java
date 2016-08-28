@@ -1,5 +1,9 @@
 package com.blindingdark.geektrans.trans.youdao.bean;
 
+import android.content.SharedPreferences;
+
+import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
+
 /**
  * Created by BlindingDark on 2016/8/21 0021.
  */
@@ -7,6 +11,13 @@ public class YoudaoSettings {
     String key = "";
     String keyfrom = "";
     String divisionLine = "";
+
+    public YoudaoSettings(SharedPreferences preferences) {
+        key = preferences.getString(YoudaoSettingsString.youdaoKey, "");
+        keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "");
+        divisionLine = preferences.getString(YoudaoSettingsString.divisionLine, YoudaoSettingsString.defaultDivLine);
+
+    }
 
     public YoudaoSettings(String key, String keyfrom, String divisionLine) {
         this.key = key;

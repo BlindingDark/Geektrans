@@ -1,5 +1,7 @@
 package com.blindingdark.geektrans.trans.youdao;
 
+import android.text.TextUtils;
+
 import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
 
 import org.json.JSONException;
@@ -29,9 +31,23 @@ public class YoudaoJSONDeal {
                     }
 
                     if (!transJSON.isNull("basic")) {
-                        for (int i = 0; i < transJSON.getJSONObject("basic").getJSONArray("explains").length(); i++) {
+                        JSONObject basic = transJSON.getJSONObject("basic");
+                        for (int i = 0; i < basic.getJSONArray("explains").length(); i++) {
                             basicExplains = basicExplains + transJSON.getJSONObject("basic").getJSONArray("explains").getString(i) + "\n";
                         }
+
+                        String[] mp3URLs = {"uk-speech", "speech", "us-speech"};
+
+                        for (String mp3 : mp3URLs) {
+                            if (!basic.isNull(mp3)) {
+                                String temp = basic.getString(mp3);
+                                if (!TextUtils.isEmpty(temp)) {
+                                    readableTransResults.addSoundURL(temp);
+                                }
+                            }
+                        }
+
+
                     }
 
                     if (!transJSON.isNull("web")) {

@@ -1,5 +1,9 @@
 package com.blindingdark.geektrans.trans.baidu.bean;
 
+import android.content.SharedPreferences;
+
+import com.blindingdark.geektrans.trans.baidu.BaiduSettingsString;
+
 /**
  * Created by BlindingDark on 2016/8/22 0022.
  */
@@ -14,6 +18,13 @@ public class BaiduSettings {
         this.baiduKey = baiduKey;
         this.baiduFrom = baiduFrom;
         this.baiduTo = baiduTo;
+    }
+
+    public BaiduSettings(SharedPreferences preferences) {
+        this.baiduAppId = preferences.getString(BaiduSettingsString.baiduAppId, "");
+        this.baiduKey = preferences.getString(BaiduSettingsString.baiduKey, "");
+        this.baiduFrom = preferences.getString(BaiduSettingsString.baiduFrom, "auto");
+        this.baiduTo = preferences.getString(BaiduSettingsString.baiduTo, "zh");
     }
 
     public String getBaiduAppId() {
