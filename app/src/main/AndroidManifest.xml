@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blindingdark.geektrans">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -59,7 +58,8 @@
             android:theme="@android:style/Theme.NoDisplay" />
         <activity android:name=".activitys.settings.YoudaoSettingsActivity" />
         <activity android:name=".activitys.settings.BaiduSettingsActivity" />
-        <activity android:name=".activitys.settings.JinshanSettingsActivity"></activity>
+        <activity android:name=".activitys.settings.JinshanSettingsActivity" />
+        <activity android:name=".activitys.settings.BingSettingsActivity"></activity>
     </application>
 
 </manifest>

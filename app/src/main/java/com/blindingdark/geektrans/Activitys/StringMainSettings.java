@@ -10,4 +10,5 @@ public class StringMainSettings {
     public static final String youdaoTransEngine = "youdaoTransEngine";
     public static final String baiduTransEngine = "baiduTransEngine";
     public static final String jinshanTransEngine = "jinshanTransEngine";
+    public static final String bingTransEngine = "bingTransEngine";
 }

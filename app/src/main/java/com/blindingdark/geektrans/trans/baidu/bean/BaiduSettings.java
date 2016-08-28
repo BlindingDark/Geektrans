@@ -23,8 +23,8 @@ public class BaiduSettings {
     public BaiduSettings(SharedPreferences preferences) {
         this.baiduAppId = preferences.getString(BaiduSettingsString.baiduAppId, "");
         this.baiduKey = preferences.getString(BaiduSettingsString.baiduKey, "");
-        this.baiduFrom = preferences.getString(BaiduSettingsString.baiduFrom, "auto");
-        this.baiduTo = preferences.getString(BaiduSettingsString.baiduTo, "zh");
+        this.baiduFrom = preferences.getString(BaiduSettingsString.baiduFrom, "0_auto");
+        this.baiduTo = preferences.getString(BaiduSettingsString.baiduTo, "0_zh");
     }
 
     public String getBaiduAppId() {
@@ -44,7 +44,8 @@ public class BaiduSettings {
     }
 
     public String getBaiduFrom() {
-        return baiduFrom;
+
+        return baiduFrom.split("_")[1];
     }
 
     public void setBaiduFrom(String baiduFrom) {
@@ -52,7 +53,8 @@ public class BaiduSettings {
     }
 
     public String getBaiduTo() {
-        return baiduTo;
+
+        return baiduTo.split("_")[1];
     }
 
     public void setBaiduTo(String baiduTo) {

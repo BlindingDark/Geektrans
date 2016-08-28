@@ -6,8 +6,8 @@ package com.blindingdark.geektrans.trans.baidu;
 public class BaiduSettingsString {
     public static String baiduAppId = "baiduAppId";
     public static String baiduKey = "baiduKey";
-    public static String baiduFrom = "baiduFrom";
-    public static String baiduTo = "baiduTo";
+    public static String baiduFrom = "baiduFromVer2";
+    public static String baiduTo = "baiduToVer2";
     public static String baiduToastTime = "baiduToastTime";
     public static final String defBaiduToastTime = "3.1";
 }

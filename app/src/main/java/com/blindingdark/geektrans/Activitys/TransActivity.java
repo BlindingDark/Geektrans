@@ -25,6 +25,9 @@ import com.blindingdark.geektrans.trans.Translator;
 import com.blindingdark.geektrans.trans.baidu.Baidu;
 import com.blindingdark.geektrans.trans.baidu.BaiduSettingsString;
 import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
+import com.blindingdark.geektrans.trans.bing.Bing;
+import com.blindingdark.geektrans.trans.bing.StringBingSettings;
+import com.blindingdark.geektrans.trans.bing.bean.BingSettings;
 import com.blindingdark.geektrans.trans.jinshan.Jinshan;
 import com.blindingdark.geektrans.trans.jinshan.StringJinshanSettings;
 import com.blindingdark.geektrans.trans.jinshan.bean.JinshanSettings;
@@ -54,6 +57,7 @@ public class TransActivity extends Activity {
         processIntent(getIntent());
     }
 
+    // 加引擎的地方
     void trans(String req) {
         req = MyStringUnits.filterBlankSpace(req);
 
@@ -77,6 +81,13 @@ public class TransActivity extends Activity {
                 String stringToastTime = preferences.getString(StringJinshanSettings.jinshanToastTime, StringJinshanSettings.defJinshanToastTime);
                 this.setToastTime(stringToastTime);
                 Translator.trans(req, new Jinshan(new JinshanSettings(preferences)), myHandler, preferences);
+                break;
+            }
+
+            case StringMainSettings.bingTransEngine: {
+                String stringToastTime = preferences.getString(StringBingSettings.bingToastTime, StringBingSettings.defBingToastTime);
+                this.setToastTime(stringToastTime);
+                Translator.trans(req, new Bing(new BingSettings(preferences)), myHandler, preferences);
                 break;
             }
         }

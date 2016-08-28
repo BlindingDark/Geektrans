@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     CheckBox checkBoxYoudao;
     CheckBox checkBoxBaidu;
     CheckBox checkBoxJinshan;
+    CheckBox checkBoxBing;
+
     ArrayList<CheckBox> checkBoxesEngines = new ArrayList<>();
 
     @Override
@@ -38,9 +40,12 @@ public class MainActivity extends AppCompatActivity {
         checkBoxYoudao = (CheckBox) findViewById(R.id.checkBoxUseYoudao);
         checkBoxBaidu = (CheckBox) findViewById(R.id.checkBoxUseBaidu);
         checkBoxJinshan = (CheckBox) findViewById(R.id.checkBoxUseJinshan);
+        checkBoxBing = (CheckBox) findViewById(R.id.checkBoxUseBing);
+
         checkBoxesEngines.add(checkBoxBaidu);
         checkBoxesEngines.add(checkBoxYoudao);
         checkBoxesEngines.add(checkBoxJinshan);
+        checkBoxesEngines.add(checkBoxBing);
 
         String nowTransEngine = preferences.getString(StringMainSettings.nowTransEngine, StringMainSettings.youdaoTransEngine);
 
@@ -55,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (nowTransEngine.equals(StringMainSettings.jinshanTransEngine)) {
             checkBoxJinshan.setChecked(true);
+        }
+        if (nowTransEngine.equals(StringMainSettings.bingTransEngine)) {
+            checkBoxBing.setChecked(true);
         }
     }
 
@@ -87,7 +95,14 @@ public class MainActivity extends AppCompatActivity {
                     /* 关闭当前的Activity */
 
     }
-
+    public void jumpToBingSettings(View view) {
+        Intent transIntent = new Intent();
+                     /* 指定intent要启动的类 */
+        transIntent.setClass(this, BingSettingsActivity.class);
+                     /* 启动一个新的Activity */
+        this.startActivity(transIntent);
+                    /* 关闭当前的Activity */
+    }
     // 单选框点击事件
 
     public void chooseYoudao(View view) {
@@ -123,5 +138,18 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         }
         checkBoxJinshan.setChecked(true);
+    }
+
+
+
+    public void chooseBing(View view) {
+        if (checkBoxBing.isChecked()){
+            for (CheckBox box : checkBoxesEngines) {
+                box.setChecked(false);
+            }
+            editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.bingTransEngine);
+            editor.commit();
+        }
+        checkBoxBing.setChecked(true);
     }
 }
