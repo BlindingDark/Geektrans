@@ -123,11 +123,9 @@ public class TransActivity extends Activity {
                 case normalToast: {
                     // 通用气泡样式
                     if (TextUtils.isEmpty(result.getStringResult())) {
-                        //MyToast.makeText(getApplicationContext(), "极客姬..查询..失败...", 2000).show();
                         textViewToastSimpleTextResult.setText("极客姬..查询..失败...");
                         toast.setView(viewToastSimple).setDuration(2000).show();
                     } else {
-                        // MyToast.makeText(getApplicationContext(), result.getStringResult(), toastTime).show();
                         textViewToastSimpleTextResult.setText(result.getStringResult());
                         toast.setView(viewToastSimple).setDuration(toastTime).show();
                         // 复制到剪贴板
