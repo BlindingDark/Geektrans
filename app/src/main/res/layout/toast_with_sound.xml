@@ -9,7 +9,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/textViewJinshanResult"
+        android:id="@+id/textViewToastWithSoundTextResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -27,7 +27,7 @@
         android:background="@android:color/darker_gray" />
 
     <ToggleButton
-        android:id="@+id/buttonJinshanSound"
+        android:id="@+id/buttonPlaySound"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:background="@android:drawable/ic_lock_silent_mode_off"

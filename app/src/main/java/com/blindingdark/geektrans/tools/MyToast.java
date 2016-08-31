@@ -42,6 +42,9 @@ public final class MyToast {
     private int horizontalMargin;
     private int verticalMargin;
     private WindowManager.LayoutParams params;
+    public WindowManager.LayoutParams getParams() {
+        return params;
+    }
     private Handler handler;
     private boolean isShowing;
     private boolean leadingInfinite;
@@ -164,6 +167,19 @@ public final class MyToast {
         removeView(false);
         windowManager.addView(toastView, params);
         isShowing = true;
+        if (handler == null) {
+            handler = new Handler();
+        }
+        handler.postDelayed(timer, duration);
+    }
+
+    public void pause(){
+        if (handler == null) {
+            handler = new Handler();
+        }
+        handler.removeCallbacks(timer);
+    }
+    public void start(){
         if (handler == null) {
             handler = new Handler();
         }
