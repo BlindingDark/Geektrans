@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -162,7 +163,6 @@ public class TransActivity extends Activity {
             }
 
 
-
             super.handleMessage(msg);
         }
     };
@@ -192,11 +192,19 @@ public class TransActivity extends Activity {
                         break;
                     case MotionEvent.ACTION_MOVE://移动事件
                         moveFlag = true;
-                        mParams.x = initialX + (int) (event.getRawX() - initialTouchX);
-                        mParams.y = initialY - (int) (event.getRawY() - initialTouchY);
-                        //更新界面
-                        windowManager.updateViewLayout(toastView, mParams);//这是更新View在界面的位置
-                        removeToastCount = 2;
+                        int deltaX = (int) (event.getRawX() - initialTouchX);
+                        int deltaY = (int) (event.getRawY() - initialTouchY);
+                        if ((deltaX * deltaX) + (deltaY * deltaY) > 100) {
+                            mParams.x = initialX + deltaX;
+                            mParams.y = initialY - deltaY;
+                            //更新界面
+                            windowManager.updateViewLayout(toastView, mParams);//这是更新View在界面的位置
+                            removeToastCount = 2;
+
+                        } else {
+                            moveFlag = false;
+                        }
+
                         break;
                     case MotionEvent.ACTION_UP://抬起事件
                         if (!moveFlag) {
