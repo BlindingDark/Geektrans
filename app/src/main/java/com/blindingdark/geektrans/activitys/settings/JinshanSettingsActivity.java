@@ -1,11 +1,14 @@
 package com.blindingdark.geektrans.activitys.settings;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -117,4 +120,10 @@ public class JinshanSettingsActivity extends AppCompatActivity {
 
         }
     };
+
+    public void jinshanLogoOnClick(View view) {
+        Uri uri = Uri.parse("http://open.iciba.com/?c=api");
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+
+    }
 }

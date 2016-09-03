@@ -1,6 +1,8 @@
 package com.blindingdark.geektrans.activitys.settings;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -146,4 +148,9 @@ public class BingSettingsActivity extends AppCompatActivity {
 
         }
     };
+
+    public void bingLogoOnClick(View view) {
+        Uri uri = Uri.parse("http://5icat.cn/thread-7180-1-1.html");
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+    }
 }

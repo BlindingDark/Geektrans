@@ -40,7 +40,8 @@
             android:contentDescription="@string/youdaologo"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/textView"
-            android:layout_toEndOf="@+id/textView" />
+            android:layout_toEndOf="@+id/textView"
+            android:onClick="youdaoLogoClick" />
 
     </LinearLayout>
 

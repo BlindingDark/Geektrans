@@ -1,11 +1,14 @@
 package com.blindingdark.geektrans.activitys.settings;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -171,4 +174,8 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         }
     };
 
+    public void youdaoLogoClick(View view) {
+        Uri uri = Uri.parse("http://fanyi.youdao.com/openapi?path=data-mode");
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+    }
 }

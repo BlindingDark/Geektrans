@@ -42,7 +42,8 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/textView"
             android:layout_toEndOf="@+id/textView"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            android:onClick="bingLogoOnClick" />
 
     </LinearLayout>
 

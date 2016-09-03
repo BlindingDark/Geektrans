@@ -32,7 +32,6 @@ public class GetTransTextActivity extends AppCompatActivity {
             // Text shared with app via Intent
             CharSequence text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
 
-
             if (!TextUtils.isEmpty(text)) {
                     Intent transIntent = new Intent();
                     transIntent.putExtra("req", text.toString());

@@ -1,6 +1,8 @@
 package com.blindingdark.geektrans.activitys.settings;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -153,4 +155,9 @@ public class BaiduSettingsActivity extends AppCompatActivity {
 
         }
     };
+
+    public void baiduLogoOnClick(View view) {
+        Uri uri = Uri.parse("http://api.fanyi.baidu.com/api/trans/product/index");
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+    }
 }

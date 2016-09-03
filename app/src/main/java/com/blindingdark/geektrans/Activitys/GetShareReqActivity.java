@@ -29,7 +29,6 @@ public class GetShareReqActivity extends AppCompatActivity {
             // Text shared with app via Intent
             String text = intent.getStringExtra(Intent.EXTRA_TEXT);
 
-
             if (!TextUtils.isEmpty(text)) {
                     Intent transIntent = new Intent();
                     transIntent.putExtra("req", text);
