@@ -1,6 +1,6 @@
 package com.blindingdark.geektrans.trans.jinshan;
 
-import com.blindingdark.geektrans.activitys.TransActivity;
+import com.blindingdark.geektrans.activity.TransActivity;
 import com.blindingdark.geektrans.api.TransReq;
 import com.blindingdark.geektrans.bean.Result;
 import com.blindingdark.geektrans.tools.PostAndGet;

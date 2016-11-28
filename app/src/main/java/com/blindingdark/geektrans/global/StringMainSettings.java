@@ -10,6 +10,7 @@ import com.blindingdark.geektrans.trans.youdao.Youdao;
  */
 public class StringMainSettings {
     public static final String NOW_TRANS_ENGINE = "NOW_TRANS_ENGINE";
+    public static final String NOW_ENGINE_LIST = "NOW_ENGINE_LIST";
     public static final String NOW_SOUND_ENGINE_LIST = "NOW_SOUND_ENGINE_LIST";
     public static final String DEFAULT_SOUND_ENGINE = "DEFAULT_SOUND_ENGINE";
     public static final String YOUDAO_TRANS_ENGINE = Youdao.ENGINE_PACKAGE_NAME;

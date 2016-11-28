@@ -1,11 +1,11 @@
-package com.blindingdark.geektrans.activitys.settings;
+package com.blindingdark.geektrans.activity.settings;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -15,51 +15,55 @@ import android.widget.Spinner;
 
 import com.blindingdark.geektrans.R;
 import com.blindingdark.geektrans.tools.Number;
-import com.blindingdark.geektrans.trans.bing.StringBingSettings;
+import com.blindingdark.geektrans.trans.baidu.BaiduSettingsString;
 
-public class BingSettingsActivity extends AppCompatActivity {
+
+public class BaiduSettingsActivity extends AppCompatActivity {
+
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    EditText editTextBingAppId;
-    EditText editTextBingKey;
-    EditText editTextBingToastTime;
-    Spinner spinnerBingFrom;
-    Spinner spinnerBingTo;
+    EditText editTextBDAPPID;
+    EditText editTextBDKey;
+    EditText editTextBDToastTime;
+    Spinner spinnerBDFrom;
+    Spinner spinnerBDTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bing_settings);
+        setContentView(R.layout.activity_baidu_settings);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
 
-        editTextBingAppId = (EditText) findViewById(R.id.editTextBingAppId);
-        String bingAppId = preferences.getString(StringBingSettings.bingAppId, "");
-        editTextBingAppId.setText(bingAppId);
-        editTextBingAppId.addTextChangedListener(bingAppIdTextWatcher);
-
-        editTextBingKey = (EditText) findViewById(R.id.editTextBingKey);
-        String bingKey = preferences.getString(StringBingSettings.bingKey,"");
-        editTextBingKey.setText(bingKey);
-        editTextBingKey.addTextChangedListener(bingKeyTextWatcher);
-
-        editTextBingToastTime = (EditText) findViewById(R.id.editTextBingToastTime);
-        String bingToastTime = preferences.getString(StringBingSettings.bingToastTime,StringBingSettings.defBingToastTime);
-        editTextBingToastTime.setText(bingToastTime);
-        editTextBingToastTime.addTextChangedListener(bingToastTimeTextWatcher);
+        editTextBDAPPID = (EditText) findViewById(R.id.BDAPPID);
+        String BDAPPID = preferences.getString(BaiduSettingsString.baiduAppId, "");
+        editTextBDAPPID.setText(BDAPPID);
+        editTextBDAPPID.addTextChangedListener(bdAPPIDTextWatcher);
 
 
-        spinnerBingFrom = (Spinner) findViewById(R.id.spinnerBingLangFrom);
-        String defFrom = preferences.getString(StringBingSettings.bingFrom, "0_auto");
-        spinnerBingFrom.setSelection(Integer.parseInt(defFrom.split("_")[0]));
+        editTextBDKey = (EditText) findViewById(R.id.BDKey);
+        String key = preferences.getString(BaiduSettingsString.baiduKey, "");
+        editTextBDKey.setText(key);
+        editTextBDKey.addTextChangedListener(bdKeyTextWatcher);
 
-        spinnerBingFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        editTextBDToastTime = (EditText) findViewById(R.id.editTextBaiduToastTime);
+        String bdToastTime = preferences.getString(BaiduSettingsString.baiduToastTime, BaiduSettingsString.defBaiduToastTime);
+        editTextBDToastTime.setText(bdToastTime);
+        editTextBDToastTime.addTextChangedListener(bdToastTimeWatcher);
+
+
+        spinnerBDFrom = (Spinner) findViewById(R.id.BDLangFromSpinner);
+        String defFrom = preferences.getString(BaiduSettingsString.baiduFrom, "0_auto");
+        spinnerBDFrom.setSelection(Integer.parseInt(defFrom.split("_")[0]));
+
+        spinnerBDFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String from = parent.getItemAtPosition(position).toString();
                 String fromCode = from.split("_")[1];
-                editor.putString(StringBingSettings.bingFrom,  position + "_" + fromCode);
+                editor.putString(BaiduSettingsString.baiduFrom, position + "_" + fromCode);
                 editor.commit();
             }
 
@@ -68,18 +72,17 @@ public class BingSettingsActivity extends AppCompatActivity {
             }
         });
 
+        spinnerBDTo = (Spinner) findViewById(R.id.BDLangToSpinner);
+        String defTo = preferences.getString(BaiduSettingsString.baiduTo, "0_0");
+        spinnerBDTo.setSelection(Integer.parseInt(defTo.split("_")[0]));
 
-        spinnerBingTo = (Spinner) findViewById(R.id.spinnerBingLangTo);
-        String defTo = preferences.getString(StringBingSettings.bingTo, "0_0");
-        spinnerBingTo.setSelection(Integer.parseInt(defTo.split("_")[0]));
-
-        spinnerBingTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerBDTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String to = parent.getItemAtPosition(position).toString();
                 String toCode = to.split("_")[1];
-                editor.putString(StringBingSettings.bingTo,  position + "_" + toCode);
+                editor.putString(BaiduSettingsString.baiduTo, position + "_" + toCode);
                 editor.commit();
             }
 
@@ -88,9 +91,11 @@ public class BingSettingsActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
-    TextWatcher bingAppIdTextWatcher = new TextWatcher() {
+    TextWatcher bdAPPIDTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -103,12 +108,12 @@ public class BingSettingsActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            editor.putString(StringBingSettings.bingAppId, editTextBingAppId.getText().toString());
+            editor.putString(BaiduSettingsString.baiduAppId, editTextBDAPPID.getText().toString());
             editor.commit();
         }
     };
 
-    TextWatcher bingKeyTextWatcher = new TextWatcher() {
+    TextWatcher bdKeyTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -121,12 +126,12 @@ public class BingSettingsActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            editor.putString(StringBingSettings.bingKey, editTextBingKey.getText().toString());
+            editor.putString(BaiduSettingsString.baiduKey, editTextBDKey.getText().toString());
             editor.commit();
         }
     };
 
-    TextWatcher bingToastTimeTextWatcher = new TextWatcher() {
+    TextWatcher bdToastTimeWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -139,18 +144,20 @@ public class BingSettingsActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            String time = editTextBingToastTime.getText().toString();
+
+            String time = editTextBDToastTime.getText().toString();
+
             // 检测是否是合法数字
             if (Number.isLegalToastTime(time)) {
-                editor.putString(StringBingSettings.bingToastTime, time);
+                editor.putString(BaiduSettingsString.baiduToastTime, time);
                 editor.commit();
             }
 
         }
     };
 
-    public void bingLogoOnClick(View view) {
-        Uri uri = Uri.parse("http://5icat.cn/thread-7180-1-1.html");
+    public void baiduLogoOnClick(View view) {
+        Uri uri = Uri.parse("http://api.fanyi.baidu.com/api/trans/product/index");
         startActivity(new Intent(Intent.ACTION_VIEW,uri));
     }
 }

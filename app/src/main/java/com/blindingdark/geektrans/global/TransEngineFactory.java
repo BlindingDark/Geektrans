@@ -1,4 +1,4 @@
-package com.blindingdark.geektrans.trans;
+package com.blindingdark.geektrans.global;
 
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;

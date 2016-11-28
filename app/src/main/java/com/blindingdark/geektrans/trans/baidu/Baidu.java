@@ -13,8 +13,8 @@ import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
  */
 public class Baidu implements TransEngine {
     BaiduSettings baiduSettings;
-    public final static String ENGINE_NAME = "com.blindingdark.geektrans.trans.baidu.Baidu";
-    public final static String ENGINE_PACKAGE_NAME = ENGINE_NAME;
+    public final static String ENGINE_NAME = "百度翻译";
+    public final static String ENGINE_PACKAGE_NAME = "com.blindingdark.geektrans.trans.baidu.Baidu";
 
     private SharedPreferences preferences;
 

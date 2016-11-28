@@ -3,7 +3,7 @@
     package="com.blindingdark.geektrans">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
     <application
@@ -12,7 +12,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.settings.MainActivity">
+        <activity
+            android:name=".activity.settings.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +32,7 @@
         </service>
 
         <activity
-            android:name=".activitys.GetTransTextActivity"
+            android:name=".activity.GetTransTextActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoDisplay">
@@ -42,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activitys.GetShareReqActivity"
+            android:name=".activity.GetShareReqActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoDisplay">
@@ -55,13 +58,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activitys.TransActivity"
+            android:name=".activity.TransActivity"
             android:exported="true"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity android:name=".activitys.settings.YoudaoSettingsActivity" />
-        <activity android:name=".activitys.settings.BaiduSettingsActivity" />
-        <activity android:name=".activitys.settings.JinshanSettingsActivity" />
-        <activity android:name=".activitys.settings.BingSettingsActivity"></activity>
+        <activity android:name=".activity.settings.YoudaoSettingsActivity" />
+        <activity android:name=".activity.settings.BaiduSettingsActivity" />
+        <activity android:name=".activity.settings.JinshanSettingsActivity" />
+        <activity android:name=".activity.settings.BingSettingsActivity" />
+        <activity android:name=".activity.settings.AddTransEngineActivity"></activity>
     </application>
 
 </manifest>
