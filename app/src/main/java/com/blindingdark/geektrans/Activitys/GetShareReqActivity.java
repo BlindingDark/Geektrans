@@ -13,6 +13,7 @@ public class GetShareReqActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         processIntent(getIntent());
+        finish();
     }
 
     @Override
@@ -36,13 +37,8 @@ public class GetShareReqActivity extends AppCompatActivity {
                     transIntent.setClass(this, TransActivity.class);
                      /* 启动一个新的Activity */
                     this.startActivity(transIntent);
-                    /* 关闭当前的Activity */
-                    this.finish();
-
-
             }
         }
-        finish();
     }
 
 }

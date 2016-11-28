@@ -3,7 +3,6 @@ package com.blindingdark.geektrans.trans.jinshan;
 import com.blindingdark.geektrans.activitys.TransActivity;
 import com.blindingdark.geektrans.api.TransReq;
 import com.blindingdark.geektrans.bean.Result;
-import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.PostAndGet;
 import com.blindingdark.geektrans.trans.jinshan.bean.JinshanResult;
 import com.blindingdark.geektrans.trans.jinshan.bean.JinshanSettings;
@@ -49,7 +48,7 @@ public class JinshanTransReq implements TransReq {
             beanResult.setWhat(TransActivity.haveSoundToast);
             beanResult.setSoundURLs(jinshanResult.getSoundURLs());
         }
-        beanResult.setFromEngineName(Jinshan.engineName);
+        beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
         beanResult.setStringResult(jinshanResult.toString());
 
         return beanResult;

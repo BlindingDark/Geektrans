@@ -10,8 +10,7 @@ import android.widget.CheckBox;
 
 
 import com.blindingdark.geektrans.R;
-import com.blindingdark.geektrans.activitys.StringMainSettings;
-import com.blindingdark.geektrans.trans.jinshan.bean.JinshanSettings;
+import com.blindingdark.geektrans.global.StringMainSettings;
 
 import java.util.ArrayList;
 
@@ -47,21 +46,21 @@ public class MainActivity extends AppCompatActivity {
         checkBoxesEngines.add(checkBoxJinshan);
         checkBoxesEngines.add(checkBoxBing);
 
-        String nowTransEngine = preferences.getString(StringMainSettings.nowTransEngine, StringMainSettings.youdaoTransEngine);
+        String nowTransEngine = preferences.getString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.YOUDAO_TRANS_ENGINE);
 
         //加引擎的地方，一定要修改按钮和单选框点击事件！！！
-        if (nowTransEngine.equals(StringMainSettings.youdaoTransEngine)) {
+        if (nowTransEngine.equals(StringMainSettings.YOUDAO_TRANS_ENGINE)) {
             checkBoxYoudao.setChecked(true);
         }
 
-        if (nowTransEngine.equals(StringMainSettings.baiduTransEngine)) {
+        if (nowTransEngine.equals(StringMainSettings.BAIDU_TRANS_ENGINE)) {
             checkBoxBaidu.setChecked(true);
         }
 
-        if (nowTransEngine.equals(StringMainSettings.jinshanTransEngine)) {
+        if (nowTransEngine.equals(StringMainSettings.JINSHAN_TRANS_ENGINE)) {
             checkBoxJinshan.setChecked(true);
         }
-        if (nowTransEngine.equals(StringMainSettings.bingTransEngine)) {
+        if (nowTransEngine.equals(StringMainSettings.BING_TRANS_ENGINE)) {
             checkBoxBing.setChecked(true);
         }
     }
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             for (CheckBox box : checkBoxesEngines) {
                 box.setChecked(false);
             }
-            editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.youdaoTransEngine);
+            editor.putString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.YOUDAO_TRANS_ENGINE);
             editor.commit();
         }
         checkBoxYoudao.setChecked(true);
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             for (CheckBox box : checkBoxesEngines) {
                 box.setChecked(false);
             }
-            editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.baiduTransEngine);
+            editor.putString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.BAIDU_TRANS_ENGINE);
             editor.commit();
         }
         checkBoxBaidu.setChecked(true);
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             for (CheckBox box : checkBoxesEngines) {
                 box.setChecked(false);
             }
-            editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.jinshanTransEngine);
+            editor.putString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.JINSHAN_TRANS_ENGINE);
             editor.commit();
         }
         checkBoxJinshan.setChecked(true);
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             for (CheckBox box : checkBoxesEngines) {
                 box.setChecked(false);
             }
-            editor.putString(StringMainSettings.nowTransEngine, StringMainSettings.bingTransEngine);
+            editor.putString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.BING_TRANS_ENGINE);
             editor.commit();
         }
         checkBoxBing.setChecked(true);

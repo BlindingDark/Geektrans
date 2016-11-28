@@ -31,7 +31,7 @@ public class BingTransReq implements TransReq {
             e.printStackTrace();
         }
         result.setStringResult(translatedText);
-        result.setFromEngineName(Bing.engineName);
+        result.setFromEngineName(Bing.ENGINE_NAME);
         result.setWhat(0);
         return result;
     }

@@ -2,7 +2,6 @@ package com.blindingdark.geektrans.trans.youdao;
 
 import com.blindingdark.geektrans.api.TransReq;
 import com.blindingdark.geektrans.bean.Result;
-import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.PostAndGet;
 import com.blindingdark.geektrans.trans.youdao.bean.ReadableTransResults;
 import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;
@@ -54,7 +53,7 @@ public class YoudaoTransReq implements TransReq {
             beanResult.setWhat(1);
         }
 
-        beanResult.setFromEngineName(Youdao.engineName);
+        beanResult.setFromEngineName(Youdao.ENGINE_NAME);
         beanResult.setStringResult(readableResults.toString());
         return beanResult;
     }

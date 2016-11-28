@@ -14,13 +14,10 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.blindingdark.geektrans.R;
-import com.blindingdark.geektrans.activitys.StringMainSettings;
+import com.blindingdark.geektrans.global.StringMainSettings;
 import com.blindingdark.geektrans.tools.Number;
 import com.blindingdark.geektrans.trans.youdao.Youdao;
 import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class YoudaoSettingsActivity extends AppCompatActivity {
 
@@ -64,8 +61,8 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         editTextToastTime.addTextChangedListener(toastTimeWatcher);
 
         switchYoudaoSoundRemix = (Switch) findViewById(R.id.switchYoudaoSoundRemix);
-        String nowSoundEngine = preferences.getString(StringMainSettings.defaultSoundEngine, "");
-        if (nowSoundEngine.equals(Youdao.engineName)) {
+        String nowSoundEngine = preferences.getString(StringMainSettings.DEFAULT_SOUND_ENGINE, "");
+        if (nowSoundEngine.equals(Youdao.ENGINE_NAME)) {
             switchYoudaoSoundRemix.setChecked(true);
         } else {
             switchYoudaoSoundRemix.setChecked(false);
@@ -79,11 +76,11 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                editor.putString(StringMainSettings.defaultSoundEngine, Youdao.engineName);
+                editor.putString(StringMainSettings.DEFAULT_SOUND_ENGINE, Youdao.ENGINE_NAME);
             }
             if (!isChecked) {
-                if (preferences.getString(StringMainSettings.defaultSoundEngine, "").equals(Youdao.engineName)) {
-                    editor.putString(StringMainSettings.defaultSoundEngine, "");
+                if (preferences.getString(StringMainSettings.DEFAULT_SOUND_ENGINE, "").equals(Youdao.ENGINE_NAME)) {
+                    editor.putString(StringMainSettings.DEFAULT_SOUND_ENGINE, "");
                 }
             }
             editor.commit();

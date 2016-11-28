@@ -14,13 +14,10 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.blindingdark.geektrans.R;
-import com.blindingdark.geektrans.activitys.StringMainSettings;
+import com.blindingdark.geektrans.global.StringMainSettings;
 import com.blindingdark.geektrans.tools.Number;
 import com.blindingdark.geektrans.trans.jinshan.Jinshan;
 import com.blindingdark.geektrans.trans.jinshan.StringJinshanSettings;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class JinshanSettingsActivity extends AppCompatActivity {
 
@@ -49,8 +46,8 @@ public class JinshanSettingsActivity extends AppCompatActivity {
         editTextJinshanToastTime.addTextChangedListener(jinshanToastTimeTextWatcher);
 
         switchJinshanSoundRemix = (Switch) findViewById(R.id.switchJinshanSoundRemix);
-        String nowSoundEngine = preferences.getString(StringMainSettings.defaultSoundEngine, "");
-        if (nowSoundEngine.equals(Jinshan.engineName)) {
+        String nowSoundEngine = preferences.getString(StringMainSettings.DEFAULT_SOUND_ENGINE, "");
+        if (nowSoundEngine.equals(Jinshan.ENGINE_NAME)) {
             switchJinshanSoundRemix.setChecked(true);
         } else {
             switchJinshanSoundRemix.setChecked(false);
@@ -65,11 +62,11 @@ public class JinshanSettingsActivity extends AppCompatActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                editor.putString(StringMainSettings.defaultSoundEngine, Jinshan.engineName);
+                editor.putString(StringMainSettings.DEFAULT_SOUND_ENGINE, Jinshan.ENGINE_NAME);
             }
             if (!isChecked) {
-                if (preferences.getString(StringMainSettings.defaultSoundEngine, "").equals(Jinshan.engineName)) {
-                    editor.putString(StringMainSettings.defaultSoundEngine, "");
+                if (preferences.getString(StringMainSettings.DEFAULT_SOUND_ENGINE, "").equals(Jinshan.ENGINE_NAME)) {
+                    editor.putString(StringMainSettings.DEFAULT_SOUND_ENGINE, "");
                 }
             }
             editor.commit();

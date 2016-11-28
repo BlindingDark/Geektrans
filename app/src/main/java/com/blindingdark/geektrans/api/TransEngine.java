@@ -9,10 +9,23 @@ import android.os.Handler;
  */
 public interface TransEngine {
 
+    void setPreferences(SharedPreferences preferences);
+
+    SharedPreferences getPreferences();
+
+
     String getEngineName();
+
     /**
      * @param req
      * @param handler
      */
-    void trans(String req, Handler handler,SharedPreferences preferences);
+    void trans(String req, Handler handler, SharedPreferences preferences);
+
+    /**
+     *
+     * @param req 要翻译的内容
+     * @param handler 回调
+     */
+    void trans(String req, Handler handler);
 }
