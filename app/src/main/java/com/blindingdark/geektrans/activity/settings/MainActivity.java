@@ -5,15 +5,17 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ListView;
 
 import com.blindingdark.geektrans.R;
-import com.blindingdark.geektrans.adapter.EngineInfoAdapter;
+import com.blindingdark.geektrans.adapter.EngineInfoRecyclerViewAdapter;
 import com.blindingdark.geektrans.bean.TransEngineInfo;
 import com.blindingdark.geektrans.global.StringMainSettings;
 import com.blindingdark.geektrans.global.TransEngineInfoFactory;
+import com.blindingdark.geektrans.ui.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    private ListView listViewEngines;
-    private EngineInfoAdapter engineInfoAdapter;
+    private RecyclerView recyclerViewEngines;
+    EngineInfoRecyclerViewAdapter engineInfoRecyclerViewAdapter;
     private List<TransEngineInfo> transEngineInfos = new ArrayList<>();
 
 
@@ -50,11 +52,14 @@ public class MainActivity extends AppCompatActivity {
             transEngineInfos.add(TransEngineInfoFactory.getTransEngineInfo(transEPackageName));
         }
 
-        listViewEngines = (ListView) findViewById(R.id.listViewEngines);
-        engineInfoAdapter = new EngineInfoAdapter(this, transEngineInfos);
+        recyclerViewEngines = (RecyclerView) findViewById(R.id.recyclerViewEngines);
 
-        listViewEngines.setAdapter(engineInfoAdapter);
+        recyclerViewEngines.setLayoutManager(new LinearLayoutManager(this));
+        engineInfoRecyclerViewAdapter = new EngineInfoRecyclerViewAdapter(this, transEngineInfos);
+        recyclerViewEngines.setAdapter(engineInfoRecyclerViewAdapter);
 
+        recyclerViewEngines.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL_LIST));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 transEngineInfos.add(TransEngineInfoFactory.getTransEngineInfo(StringMainSettings.BAIDU_TRANS_ENGINE));
-                engineInfoAdapter.notifyDataSetChanged();
 
+                engineInfoRecyclerViewAdapter.notifyDataSetChanged();
 
 /*                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/

@@ -21,8 +21,22 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_engines" />
 
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/lightGrey3"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+
+        android:scrollbars="none"
+
+        android:id="@+id/recyclerViewEngines" />
+    <!--        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
