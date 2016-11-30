@@ -28,7 +28,7 @@
 
 
         <Space
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"/>
 
         <CheckBox

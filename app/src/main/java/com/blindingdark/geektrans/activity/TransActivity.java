@@ -135,6 +135,8 @@ public class TransActivity extends Activity {
                         textViewToastSimpleTextResult.setText(finalResult.getStringResult());
                         toast.setView(viewToastSimple).setDuration(toastTime).show();
                         // 复制到剪贴板
+
+
                         Clip.copyResult(finalResult.getStringResult(), (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE));
                     }
                     break;
@@ -161,7 +163,10 @@ public class TransActivity extends Activity {
                         });
                         toast.setView(viewToastWitSound).setDuration(toastTime).show();
                         // 复制到剪贴板
-                        Clip.copyResult(finalResult.getStringResult(), (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE));
+                        //自动复制
+                        if (isAutoCopyOpen()) {
+                            Clip.copyResult(finalResult.getStringResult(), (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE));
+                        }
                     }
                     break;
                 }
@@ -226,6 +231,14 @@ public class TransActivity extends Activity {
             }
         };
 
+    }
+
+    private boolean isAutoCopyOpen() {
+        String isAutoCopyOpen = preferences.getString(StringMainSettings.IS_AUTO_COPY_OPEN, "true");
+        if ("false".equals(isAutoCopyOpen)) {
+            return false;
+        }
+        return true;
     }
 
 }

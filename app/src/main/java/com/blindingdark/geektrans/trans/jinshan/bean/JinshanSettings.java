@@ -1,6 +1,7 @@
 package com.blindingdark.geektrans.trans.jinshan.bean;
 
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.blindingdark.geektrans.trans.jinshan.StringJinshanSettings;
 
@@ -15,7 +16,10 @@ public class JinshanSettings {
     }
 
     public JinshanSettings(SharedPreferences preferences) {
-        jinshanKey = preferences.getString(StringJinshanSettings.jinshanKey, "");
+        jinshanKey = preferences.getString(StringJinshanSettings.jinshanKey, "609DBC0C963B07A3E1E93B5890D58EBC");
+        if (TextUtils.isEmpty(jinshanKey)) {
+            jinshanKey = "609DBC0C963B07A3E1E93B5890D58EBC";
+        }
     }
 
     public String getJinshanKey() {

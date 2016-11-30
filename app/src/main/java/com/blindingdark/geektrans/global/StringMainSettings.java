@@ -4,7 +4,6 @@ import com.blindingdark.geektrans.trans.baidu.Baidu;
 import com.blindingdark.geektrans.trans.bing.Bing;
 import com.blindingdark.geektrans.trans.jinshan.Jinshan;
 import com.blindingdark.geektrans.trans.youdao.Youdao;
-
 /**
  * Created by BlindingDark on 2016/8/22 0022.
  */
@@ -19,4 +18,6 @@ public class StringMainSettings {
     public static final String BING_TRANS_ENGINE = Bing.ENGINE_PACKAGE_NAME;
     public static final String TOAST_TIME = ".TOAST_TIME";
     public static final String DEFAULT_TOAST_TIME = "DEFAULT_TOAST_TIME";
+    public static final String IS_AUTO_COPY_OPEN = "IS_AUTO_COPY_OPEN";
+
 }

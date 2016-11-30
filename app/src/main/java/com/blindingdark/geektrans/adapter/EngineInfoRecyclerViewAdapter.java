@@ -57,22 +57,23 @@ public class EngineInfoRecyclerViewAdapter extends android.support.v7.widget.Rec
 
     @Override
     public void onBindViewHolder(EngineInfoRecyclerViewAdapter.EngineInfoViewHolder engineSettingsViewHolder, int position) {
+        final TransEngineInfo info = transEngineInfos.get(position);
         // 这里不知为啥得到的缓存有问题，要强行设置为 false
         engineSettingsViewHolder.checkBox.setChecked(false);
         //设置布局中要显示的东西
 
         // 从引擎列表里获取当前位置的引擎名字，并设置
-        engineSettingsViewHolder.engineName.setText(transEngineInfos.get(position).getEngineName());
+        engineSettingsViewHolder.engineName.setText(info.getEngineName());
 
-        // 跳转到对应的设置界面
-        final int finalPosition = position;
+
         engineSettingsViewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent transIntent = new Intent();
                      /* 指定intent要启动的类 */
                 try {
-                    transIntent.setClass(context, Class.forName(transEngineInfos.get(finalPosition).getEngineSettingsActivityPackageName()));
+                    /* 跳转 */
+                    transIntent.setClass(context, Class.forName(info.getEngineSettingsActivityPackageName()));
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -86,7 +87,7 @@ public class EngineInfoRecyclerViewAdapter extends android.support.v7.widget.Rec
         // 现在所选的引擎包名
         String nowTransEngine = sharedPreferences.getString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.YOUDAO_TRANS_ENGINE);
         // 如果当前显示的引擎是默认引擎
-        if (nowTransEngine.equals(transEngineInfos.get(finalPosition).getEnginePackageName())) {
+        if (nowTransEngine.equals(info.getEnginePackageName())) {
             engineSettingsViewHolder.checkBox.setChecked(true);
         }
 
@@ -100,7 +101,7 @@ public class EngineInfoRecyclerViewAdapter extends android.support.v7.widget.Rec
                             cb.setChecked(false);
                         }
                     }
-                    editor.putString(StringMainSettings.NOW_TRANS_ENGINE, transEngineInfos.get(finalPosition).getEnginePackageName());
+                    editor.putString(StringMainSettings.NOW_TRANS_ENGINE, info.getEnginePackageName());
                     editor.commit();
                 }
                 thisCheckBox.setChecked(true);
