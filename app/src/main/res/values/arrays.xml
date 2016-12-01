@@ -162,4 +162,16 @@
         <item>@string/cy</item>
         <item>@string/yua</item>
     </string-array>
+
+    <string-array name="toast_styles">
+        <item>@string/def_grey</item>
+        <item>@string/card_write</item>
+    </string-array>
+    <string-array name="toast_styles_values">
+        <item>@string/def_grey_value</item>
+        <item>@string/card_write_value</item>
+    </string-array>
+
+    <string name="def_grey_value">0</string>
+    <string name="card_write_value">1</string>
 </resources>

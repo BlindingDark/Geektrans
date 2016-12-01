@@ -17,8 +17,9 @@
  */
 package com.memetix.mst.translate;
 
-import com.memetix.mst.language.Language;
 import com.memetix.mst.MicrosoftTranslatorAPI;
+import com.memetix.mst.language.Language;
+
 import java.net.URL;
 import java.net.URLEncoder;
 /**

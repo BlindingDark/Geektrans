@@ -1,6 +1,7 @@
 package com.blindingdark.geektrans.activity.settings;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.blindingdark.geektrans.R;
@@ -24,9 +26,9 @@ import com.blindingdark.geektrans.global.TransEngineInfoFactory;
 import com.blindingdark.geektrans.ui.DividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
-
 
         Set<String> defaultTransSet = SeqMainSettings.getDefaultEngines();
         // 得到当前已添加的引擎列表
@@ -70,7 +71,25 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewEngines.setItemAnimator(new DefaultItemAnimator());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        // toolbar 设置
+        toolbar.setTitle(this.getString(R.string.app_name));
+        toolbar.inflateMenu(R.menu.menu_main);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // Handle the menu item
+                switch (item.getItemId()) {
+                    case R.id.other_settings:
+                        Intent transIntent = new Intent();
+                        transIntent.setClass(MainActivity.this, OtherSettingsActivity.class);
+                        MainActivity.this.startActivity(transIntent);
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -166,5 +185,6 @@ public class MainActivity extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
         itemTouchHelper.attachToRecyclerView(recyclerViewEngines);
     }
+
 
 }

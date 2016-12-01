@@ -65,7 +65,8 @@
         <activity android:name=".activity.settings.BaiduSettingsActivity" />
         <activity android:name=".activity.settings.JinshanSettingsActivity" />
         <activity android:name=".activity.settings.BingSettingsActivity" />
-        <activity android:name=".activity.settings.AddTransEngineActivity"></activity>
+        <activity android:name=".activity.settings.AddTransEngineActivity" />
+        <activity android:name=".activity.settings.OtherSettingsActivity" />
     </application>
 
 </manifest>

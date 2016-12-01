@@ -74,6 +74,10 @@
     <string name="vi">拉脱维亚语_vi</string>
     <string name="cy">威尔士语_cy</string>
     <string name="yua">尤卡坦玛雅语_yua</string>
+    <string name="other_settings">Settings</string>
+
+    <string name="def_grey">default grey</string>
+    <string name="card_write">card write</string>
 
 
 </resources>

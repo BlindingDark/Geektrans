@@ -18,9 +18,13 @@
 package com.memetix.mst.language;
 
 import com.memetix.mst.MicrosoftTranslatorAPI;
+
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

@@ -21,11 +21,12 @@ import com.blindingdark.geektrans.R;
 import com.blindingdark.geektrans.api.TransEngine;
 import com.blindingdark.geektrans.bean.Result;
 import com.blindingdark.geektrans.global.StringMainSettings;
+import com.blindingdark.geektrans.global.ToastStyleFactory;
+import com.blindingdark.geektrans.global.TransEngineFactory;
 import com.blindingdark.geektrans.tools.Clip;
 import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.MyToast;
 import com.blindingdark.geektrans.tools.SoundPlayer;
-import com.blindingdark.geektrans.global.TransEngineFactory;
 
 public class TransActivity extends Activity {
 
@@ -44,6 +45,7 @@ public class TransActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
         processIntent(getIntent());
@@ -115,15 +117,17 @@ public class TransActivity extends Activity {
             final Result finalResult = result;
 
             LayoutInflater inflater = getLayoutInflater();
-            final View viewToastSimple = inflater.inflate(R.layout.toast_simple, null);// 得到自定气泡
-            final View viewToastWitSound = inflater.inflate(R.layout.toast_with_sound, null);// 得到自定气泡
+            ToastStyleFactory toastStyleFactory = new ToastStyleFactory(inflater);
+            String style = preferences.getString(StringMainSettings.NOW_TOAST_STYLE, "1");
+
+            final View viewToastSimple = toastStyleFactory.getSimpleToastStyleById(style);// 得到自定气泡
+            final View viewToastWitSound = toastStyleFactory.getSoundToastStyleById(style);// 得到自定气泡
 
             viewToastWitSound.setOnTouchListener(getToastMoveListener(toast, viewToastWitSound));// 设置Toast触摸动作！！
             viewToastSimple.setOnTouchListener(getToastMoveListener(toast, viewToastSimple));
 
             TextView textViewToastSimpleTextResult = (TextView) viewToastSimple.findViewById(R.id.textViewToastSimpleTextResult);
             TextView textViewToastWithSoundTextResult = (TextView) viewToastWitSound.findViewById(R.id.textViewToastWithSoundTextResult);
-
 
             switch (msg.what) {
                 case normalToast: {
@@ -135,9 +139,10 @@ public class TransActivity extends Activity {
                         textViewToastSimpleTextResult.setText(finalResult.getStringResult());
                         toast.setView(viewToastSimple).setDuration(toastTime).show();
                         // 复制到剪贴板
-
-
-                        Clip.copyResult(finalResult.getStringResult(), (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE));
+                        //自动复制
+                        if (isAutoCopyOpen()) {
+                            Clip.copyResult(finalResult.getStringResult(), (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE));
+                        }
                     }
                     break;
                 }
@@ -234,11 +239,7 @@ public class TransActivity extends Activity {
     }
 
     private boolean isAutoCopyOpen() {
-        String isAutoCopyOpen = preferences.getString(StringMainSettings.IS_AUTO_COPY_OPEN, "true");
-        if ("false".equals(isAutoCopyOpen)) {
-            return false;
-        }
-        return true;
+        return preferences.getBoolean(StringMainSettings.IS_AUTO_COPY_OPEN, true);
     }
 
 }

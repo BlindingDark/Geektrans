@@ -2,7 +2,6 @@ package com.blindingdark.geektrans.trans.youdao.bean;
 
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
 

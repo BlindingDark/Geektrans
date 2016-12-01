@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="界面设置" >
+        <ListPreference
+            android:dialogTitle="气泡样式"
+            android:defaultValue="1"
+            android:entries="@array/toast_styles"
+            android:entryValues="@array/toast_styles_values"
+            android:key="NOW_TOAST_STYLE"
+            android:title="气泡样式" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="杂项设置" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="IS_AUTO_COPY_OPEN"
+            android:summary="自动复制翻译结果到剪贴板"
+            android:title="复制翻译结果" />
+    </PreferenceCategory>
+</PreferenceScreen>
