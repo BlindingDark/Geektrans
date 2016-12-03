@@ -24,10 +24,10 @@
         </activity>
 
         <service
-            android:name=".tools.SoundPlayer"
+            android:name=".tools.SoundPlayerService"
             android:enabled="true">
             <intent-filter>
-                <action android:name="com.blindingdark.geektrans.tools.SoundPlayer" />
+                <action android:name="com.blindingdark.geektrans.tools.SoundPlayerService" />
             </intent-filter>
         </service>
 

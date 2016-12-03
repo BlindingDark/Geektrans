@@ -26,7 +26,7 @@ import com.blindingdark.geektrans.global.TransEngineFactory;
 import com.blindingdark.geektrans.tools.Clip;
 import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.MyToast;
-import com.blindingdark.geektrans.tools.SoundPlayer;
+import com.blindingdark.geektrans.tools.SoundPlayerService;
 
 public class TransActivity extends Activity {
 
@@ -160,7 +160,7 @@ public class TransActivity extends Activity {
                             public void onClick(View v) {
                                 Intent intent = new Intent();
                                 intent.putStringArrayListExtra("soundList", finalResult.getSoundURLs());
-                                intent.setClass(TransActivity.this, SoundPlayer.class);
+                                intent.setClass(TransActivity.this, SoundPlayerService.class);
                                 startService(intent);
                                 stopService(intent);
 
