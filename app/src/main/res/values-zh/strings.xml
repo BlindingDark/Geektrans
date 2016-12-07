@@ -79,6 +79,10 @@
     <string name="def_grey">默认灰</string>
     <string name="card_write_value">1</string>
     <string name="def_grey_value">0</string>
+    <string name="copy_result_value">0</string>
+    <string name="copy_result">复制翻译结果</string>
+    <string name="engine_switch_value">1</string>
+    <string name="engine_switch">得到其它翻译引擎结果</string>
 
 
 </resources>

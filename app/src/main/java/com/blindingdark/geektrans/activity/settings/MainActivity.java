@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         Set<String> defaultTransSet = SeqMainSettings.getDefaultEngines();
         // 得到当前已添加的引擎列表
 
-        final HashSet<String> nowTransEngines = (HashSet<String>) preferences.getStringSet(StringMainSettings.NOW_ENGINE_LIST, defaultTransSet);
+        // 想改 preferences.getStringSet 要 new 一个新的
+        final HashSet<String> nowTransEngines = new HashSet<>(preferences.getStringSet(StringMainSettings.NOW_ENGINE_LIST, defaultTransSet));
 
         for (String transEPackageName : nowTransEngines) {
             transEngineInfos.add(TransEngineInfoFactory.getTransEngineInfo(transEPackageName));
@@ -97,15 +99,22 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Set<String> allEnginesTemp = SeqMainSettings.getAllEngines();
+                allEnginesTemp.removeAll(nowTransEngines);
+
+                if (allEnginesTemp.isEmpty()) {
+                    final Snackbar snackbar = Snackbar.make(view, "暂时没有更多引擎啦~", Snackbar.LENGTH_SHORT);
+                    snackbar.setAction("知道了", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            snackbar.dismiss();
+                        }
+                    });
+                    snackbar.show();
+                    return;
+                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-                Set<String> allEnginesTemp = SeqMainSettings.getAllEngines();
-                //Set<String> defaultTransSet = SeqMainSettings.getDefaultEngines();
-                // 得到当前已添加的引擎列表
-                //final HashSet<String> nowTransEngines = (HashSet<String>) preferences.getStringSet(StringMainSettings.NOW_ENGINE_LIST, defaultTransSet);
-
-                allEnginesTemp.removeAll(nowTransEngines);
 
                 final List<TransEngineInfo> addableEInfoList = new ArrayList<>();
                 List<String> showAddList = new ArrayList<>();
@@ -132,16 +141,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 builder.show();
-/*                transEngineInfos.add(TransEngineInfoFactory.getTransEngineInfo(StringMainSettings.BAIDU_TRANS_ENGINE));
 
-                engineInfoRecyclerViewAdapter.notifyDataSetChanged();*/
-
-/*                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
             }
         });
 
-
+        // 引擎卡片滑动
         //0则不执行拖动或者滑动
         ItemTouchHelper.Callback mCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override

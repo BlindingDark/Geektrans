@@ -78,6 +78,9 @@
 
     <string name="def_grey">default grey</string>
     <string name="card_write">card write</string>
+    <string name="copy_result">copy result</string>
+    <string name="engine_switch">switch engine</string>
+
 
 
 </resources>

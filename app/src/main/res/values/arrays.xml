@@ -174,4 +174,19 @@
 
     <string name="def_grey_value">0</string>
     <string name="card_write_value">1</string>
+
+    <string-array name="long_click_toast_act">
+        <item>@string/copy_result</item>
+        <item>@string/engine_switch</item>
+    </string-array>
+
+    <string-array name="long_click_toast_act_value">
+        <item>@string/copy_result_value</item>
+        <item>@string/engine_switch_value</item>
+    </string-array>
+
+    <string name="copy_result_value">0</string>
+    <string name="engine_switch_value">1</string>
+
+
 </resources>

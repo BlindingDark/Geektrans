@@ -11,9 +11,17 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="杂项设置" >
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="IS_AUTO_COPY_OPEN"
             android:summary="自动复制翻译结果到剪贴板"
             android:title="复制翻译结果" />
+        <ListPreference
+            android:dialogTitle="长按气泡动作"
+            android:defaultValue="1"
+            android:entries="@array/long_click_toast_act"
+            android:entryValues="@array/long_click_toast_act_value"
+            android:key="LONG_CLICK_TOAST_ACT"
+            android:title="长按气泡动作"
+            android:summary="选择长按气泡后触发的动作"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -20,5 +20,7 @@ public class StringMainSettings {
     public static final String DEFAULT_TOAST_TIME = "DEFAULT_TOAST_TIME";
     public static final String IS_AUTO_COPY_OPEN = "IS_AUTO_COPY_OPEN";
     public static final String NOW_TOAST_STYLE = "NOW_TOAST_STYLE";
+    public static final String LONG_CLICK_TOAST_ACT = "LONG_CLICK_TOAST_ACT";
+
 
 }
