@@ -23,5 +23,12 @@
             android:key="LONG_CLICK_TOAST_ACT"
             android:title="长按气泡动作"
             android:summary="选择长按气泡后触发的动作"/>
+        <PreferenceScreen
+            android:title="允许上层显示权限"
+            android:summary="点击跳转到系统权限设置"
+            android:key="JUMP_TO_DRAW_OVERLAYS_SETTING">
+        </PreferenceScreen>
+
+
     </PreferenceCategory>
 </PreferenceScreen>

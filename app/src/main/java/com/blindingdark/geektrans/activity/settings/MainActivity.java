@@ -1,5 +1,6 @@
 package com.blindingdark.geektrans.activity.settings;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.blindingdark.geektrans.R;
 import com.blindingdark.geektrans.adapter.EngineInfoRecyclerViewAdapter;
@@ -30,6 +32,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import ezy.assist.compat.SettingsCompat;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -188,7 +192,13 @@ public class MainActivity extends AppCompatActivity {
         // 添加触摸事件支持
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
         itemTouchHelper.attachToRecyclerView(recyclerViewEngines);
+
+        Context context = getApplicationContext();
+        if(!SettingsCompat.canDrawOverlays(context)){
+            Toast.makeText(context,"检测到未开启“在上层显示”权限，请前往设置开启。",Toast.LENGTH_LONG).show();
+        }
     }
+
 
 
 }

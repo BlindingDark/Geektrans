@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import ezy.assist.compat.SettingsCompat;
+
 public final class MyToast {
 
     private static final String TAG = MyToast.class.getName();
@@ -42,9 +44,11 @@ public final class MyToast {
     private int horizontalMargin;
     private int verticalMargin;
     private WindowManager.LayoutParams params;
+
     public WindowManager.LayoutParams getParams() {
         return params;
     }
+
     private Handler handler;
     private boolean isShowing;
     private boolean leadingInfinite;
@@ -80,7 +84,13 @@ public final class MyToast {
                 //        | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
         params.format = android.graphics.PixelFormat.TRANSLUCENT;
-        params.type = WindowManager.LayoutParams.TYPE_TOAST;
+
+        if (SettingsCompat.canDrawOverlays(context)) {
+            params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        } else {
+            params.type = WindowManager.LayoutParams.TYPE_TOAST;
+        }
+
         params.setTitle("ToastHelper");
         params.alpha = 1.0f;
         // params.buttonBrightness = 1.0f;
@@ -173,13 +183,14 @@ public final class MyToast {
         handler.postDelayed(timer, duration);
     }
 
-    public void pause(){
+    public void pause() {
         if (handler == null) {
             handler = new Handler();
         }
         handler.removeCallbacks(timer);
     }
-    public void start(){
+
+    public void start() {
         if (handler == null) {
             handler = new Handler();
         }

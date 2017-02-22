@@ -9,6 +9,8 @@ import android.preference.PreferenceFragment;
 import com.blindingdark.geektrans.R;
 import com.blindingdark.geektrans.activity.TransActivity;
 
+import ezy.assist.compat.SettingsCompat;
+
 /**
  * Created by BlindingDark on 2016/12/1 0001.
  */
@@ -32,6 +34,14 @@ public class PrefsFragement extends PreferenceFragment {
                 transIntent.setClass(context, TransActivity.class);
 
                 context.startActivity(transIntent);
+                return true;
+            }
+        });
+
+        findPreference("JUMP_TO_DRAW_OVERLAYS_SETTING").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                SettingsCompat.manageDrawOverlays(context);
                 return true;
             }
         });

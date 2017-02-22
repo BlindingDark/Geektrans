@@ -273,9 +273,9 @@ public class TransActivity extends Activity {
                             }
                         }
                         moveState.setMoved(false);
+                        toast.start();
                         break;
                 }
-                toast.start();
                 return false; // return false 表示后面还有其他事件发生，要传递下去
             }
         };
