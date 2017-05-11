@@ -1,6 +1,7 @@
 package com.blindingdark.geektrans.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by BlindingDark on 2016/8/24 0024.
@@ -19,7 +20,7 @@ public class Result {
 
     int what = 0;
     String stringResult = "";
-    ArrayList<String> soundURLs = new ArrayList<>();
+    List<String> soundURLs = new ArrayList<>();
 
     public int getWhat() {
         return what;
@@ -41,13 +42,13 @@ public class Result {
 
     public ArrayList<String> getSoundURLs() {
         if (soundURLs != null) {
-            return soundURLs;
+            return (ArrayList<String>) soundURLs;
         } else {
             return new ArrayList<>();
         }
     }
 
-    public Result setSoundURLs(ArrayList<String> soundURLs) {
+    public Result setSoundURLs(List<String> soundURLs) {
         this.soundURLs = soundURLs;
         return this;
     }

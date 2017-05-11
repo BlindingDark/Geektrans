@@ -38,29 +38,17 @@
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.GetShareReqActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:mimeType="text/*" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.TransActivity"
             android:exported="true"
             android:theme="@android:style/Theme.NoDisplay" />
+
         <activity android:name=".activity.settings.YoudaoSettingsActivity" />
         <activity android:name=".activity.settings.BaiduSettingsActivity" />
         <activity android:name=".activity.settings.JinshanSettingsActivity" />

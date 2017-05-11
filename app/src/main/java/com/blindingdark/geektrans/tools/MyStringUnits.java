@@ -23,4 +23,17 @@ public class MyStringUnits {
     public static String filterBlankSpace(String str) {
         return str.trim().replaceAll("\\s+", " ");
     }
+
+    public static boolean isASCII(String str) {
+        char tch;
+        int tint;
+        for (int i = 0; i < str.length(); i++) {
+            tch = str.charAt(i);
+            tint = (int) tch;
+            if (tint > 255) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

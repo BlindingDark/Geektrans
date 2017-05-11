@@ -24,23 +24,28 @@ public class GetTransTextActivity extends AppCompatActivity {
     }
 
     private void processIntent(Intent intent) {
-
         String action = intent.getAction();
-
+        String text = null;
 
         if (Intent.ACTION_PROCESS_TEXT.equals(action)) {
             // Text shared with app via Intent
-            CharSequence text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
-
-            if (!TextUtils.isEmpty(text)) {
-                Intent transIntent = new Intent();
-                transIntent.putExtra("req", text.toString());
-                     /* 指定intent要启动的类 */
-                transIntent.setClass(this, TransActivity.class);
-                     /* 启动一个新的Activity */
-                this.startActivity(transIntent);
-            }
+            text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT).toString();
         }
+
+        if (Intent.ACTION_SEND.equals(action)) {
+            // Text shared with app via Intent
+            text = intent.getStringExtra(Intent.EXTRA_TEXT);
+        }
+
+        if (!TextUtils.isEmpty(text)) {
+            Intent transIntent = new Intent();
+            transIntent.putExtra("req", text);
+                     /* 指定intent要启动的类 */
+            transIntent.setClass(this, TransActivity.class);
+                     /* 启动一个新的Activity */
+            this.startActivity(transIntent);
+        }
+
     }
 
 

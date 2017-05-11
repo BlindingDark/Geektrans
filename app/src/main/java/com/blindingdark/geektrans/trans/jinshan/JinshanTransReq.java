@@ -1,57 +1,145 @@
 package com.blindingdark.geektrans.trans.jinshan;
 
-import com.blindingdark.geektrans.activity.TransActivity;
-import com.blindingdark.geektrans.api.TransReq;
-import com.blindingdark.geektrans.bean.Result;
-import com.blindingdark.geektrans.tools.PostAndGet;
-import com.blindingdark.geektrans.trans.jinshan.bean.JinshanResult;
-import com.blindingdark.geektrans.trans.jinshan.bean.JinshanSettings;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import com.blindingdark.geektrans.activity.TransActivity;
+import com.blindingdark.geektrans.bean.Result;
+import com.blindingdark.geektrans.tools.MyStringUnits;
+import com.blindingdark.geektrans.trans.jinshan.bean.JinshanJSONBean;
+import com.blindingdark.geektrans.trans.jinshan.bean.JinshanJSONBeanZh;
+import com.blindingdark.geektrans.trans.jinshan.bean.JinshanSettings;
+import com.blindingdark.geektrans.trans.jinshan.bean.Symbol;
+import com.blindingdark.geektrans.trans.jinshan.bean.SymbolZh;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by BlindingDark on 2016/8/23 0023.
  */
-public class JinshanTransReq implements TransReq {
+public class JinshanTransReq {
 
-    String jinshanTransURL = "http://dict-co.iciba.com/api/dictionary.php";
+    String jinshanTransURL = "http://dict-co.iciba.com/";
     JinshanSettings jinshanSettings;
     String req;
 
     Result beanResult = new Result();
-    JinshanResult jinshanResult;
+    Handler handler;
 
-
-    public JinshanTransReq(JinshanSettings jinshanSettings, String req) {
+    public JinshanTransReq(JinshanSettings jinshanSettings, String req, Handler handler) {
         beanResult.setOriginalReq(req);
         this.jinshanSettings = jinshanSettings;
         this.req = req;
+        this.handler = handler;
     }
 
-    @Override
-    public Result getTrans() {
+    public void trans() {
+        // TODO: 17-5-11 英文如果有过去式，还需要单独检测
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(jinshanTransURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        try {
-            req = URLEncoder.encode(req.toLowerCase(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        String query = "w=" + req + "&type=json&key=" + jinshanSettings.getJinshanKey();
+        JinshanAPI api = retrofit.create(JinshanAPI.class);
+        // if req is eng
+        if (MyStringUnits.isASCII(req)) {
+            api.getResult(req, jinshanSettings.getJinshanKey())
+                    .enqueue(new Callback<JinshanJSONBean>() {
+                        @Override
+                        public void onResponse(Call<JinshanJSONBean> call,
+                                               Response<JinshanJSONBean> response) {
+                            JinshanJSONBean res = response.body();
+                            // 内容
+                            List<Symbol> symbols = res.getSymbols();
+                            List<String> sounds = new ArrayList<>();
 
-        String result = PostAndGet.sendGet(jinshanTransURL, query, 0);
-        jinshanResult = JinshanJSONDeal.getResults(result);// JSON解析
+                            for (Symbol symbol : symbols) {
+                                List<String> soundsTemp = symbol.getSoundURLs();
+                                for (String sound : soundsTemp) {
+                                    if (!TextUtils.isEmpty(sound)) {
+                                        sounds.add(sound);
+                                    }
+                                }
 
-        if (jinshanResult.getSoundURLs().isEmpty()) {
-            beanResult.setWhat(TransActivity.normalToast);
+                            }
+                            if (sounds.isEmpty()) {
+                                beanResult.setWhat(TransActivity.normalToast);
+                            } else {
+                                beanResult.setWhat(TransActivity.haveSoundToast);
+                                beanResult.setSoundURLs(sounds);
+                            }
+
+                            beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
+
+                            beanResult.setStringResult(res.toString());
+
+                            Message message = new Message();
+                            message.what = beanResult.getWhat();
+                            message.obj = beanResult;
+                            handler.sendMessage(message);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<JinshanJSONBean> call, Throwable t) {
+                            Log.d("retrofitOnFailure", t.toString());
+                        }
+                    });
         } else {
-            beanResult.setWhat(TransActivity.haveSoundToast);
-            beanResult.setSoundURLs(jinshanResult.getSoundURLs());
-        }
-        beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
-        beanResult.setStringResult(jinshanResult.toString());
+            api.getZhResult(req, jinshanSettings.getJinshanKey())
+                    .enqueue(new Callback<JinshanJSONBeanZh>() {
+                        @Override
+                        public void onResponse(Call<JinshanJSONBeanZh> call,
+                                               Response<JinshanJSONBeanZh> response) {
+                            JinshanJSONBeanZh res = response.body();
+                            // 内容
+                            List<SymbolZh> symbols = res.getSymbols();
+                            List<String> sounds = new ArrayList<>();
 
-        return beanResult;
+                            for (SymbolZh symbol : symbols) {
+                                List<String> soundsTemp = symbol.getSoundURLs();
+                                for (String sound : soundsTemp) {
+                                    if (!TextUtils.isEmpty(sound)) {
+                                        sounds.add(sound);
+                                    }
+                                }
+
+                            }
+
+                            if (sounds.isEmpty()) {
+                                beanResult.setWhat(TransActivity.normalToast);
+                            } else {
+                                beanResult.setWhat(TransActivity.haveSoundToast);
+                                beanResult.setSoundURLs(sounds);
+                            }
+
+                            beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
+
+                            beanResult.setStringResult(res.toString());
+
+                            Message message = new Message();
+                            message.what = beanResult.getWhat();
+                            message.obj = beanResult;
+                            handler.sendMessage(message);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<JinshanJSONBeanZh> call, Throwable t) {
+                            Log.d("retrofitOnFailure", t.toString());
+                        }
+                    });
+        }
+
     }
 
 }

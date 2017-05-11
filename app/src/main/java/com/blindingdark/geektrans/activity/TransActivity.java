@@ -42,7 +42,14 @@ public class TransActivity extends Activity {
     SharedPreferences preferences;
 
     public void setToastTime(String stringToastTime) {
-        this.toastTime = (int) Float.parseFloat(stringToastTime) * 1000;
+        double time = Double.parseDouble(stringToastTime) * 1000;
+
+        if (time > Integer.MAX_VALUE) {
+            this.toastTime = Integer.MAX_VALUE;
+        } else {
+            this.toastTime = (int) time;
+        }
+
     }
 
     int toastTime = Toast.LENGTH_LONG;
@@ -57,7 +64,9 @@ public class TransActivity extends Activity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        nowTransEngine = preferences.getString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.YOUDAO_TRANS_ENGINE);
+        nowTransEngine = preferences
+                .getString(StringMainSettings.NOW_TRANS_ENGINE,
+                        StringMainSettings.YOUDAO_TRANS_ENGINE);
 
         defaultTransSet = SeqMainSettings.getDefaultEngines();
         // 得到当前已添加的引擎列表
