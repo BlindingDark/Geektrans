@@ -21,7 +21,7 @@ public class SeqMainSettings {
         ALL_ENGINES.add(StringMainSettings.YOUDAO_TRANS_ENGINE);
         ALL_ENGINES.add(StringMainSettings.JINSHAN_TRANS_ENGINE);
         ALL_ENGINES.add(StringMainSettings.BAIDU_TRANS_ENGINE);
-        ALL_ENGINES.add(StringMainSettings.BING_TRANS_ENGINE);
+        //ALL_ENGINES.add(StringMainSettings.BING_TRANS_ENGINE);
 
         return ALL_ENGINES;
     }

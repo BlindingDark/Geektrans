@@ -71,8 +71,12 @@ public class JinshanJSONBean {
 
         if (null != symbols) {
             for (Symbol symbol : symbols) {
-                result += "\n";
-                result += symbol.toString();
+                String temp = symbol.toString();
+                if (!TextUtils.isEmpty(temp)) {
+                    result += "\n";
+                    result += temp;
+                }
+
             }
         }
 

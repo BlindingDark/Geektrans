@@ -44,15 +44,7 @@ public class Bing implements TransEngine {
 
     @Override
     public void trans(final String req, final Handler handler) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Result result = new BingTransReq(bingSettings, req).getTrans();
-                Message message = new Message();
-                message.what = result.getWhat();
-                message.obj = result;
-                handler.sendMessage(message);
-            }
-        }).start();
+        new BingTransReq(bingSettings, req, handler).trans();
+
     }
 }

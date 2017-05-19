@@ -43,8 +43,11 @@ public class JinshanJSONBeanZh {
         }
         if (null != symbols) {
             for (SymbolZh symbol : symbols) {
-                result += "\n";
-                result += symbol.toString();
+                String temp = symbol.toString();
+                if (!TextUtils.isEmpty(temp)) {
+                    result += "\n";
+                    result += temp;
+                }
             }
         }
 

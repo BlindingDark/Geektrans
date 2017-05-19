@@ -30,6 +30,7 @@ import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.blindingdark.geektrans.tools.MyToast;
 import com.blindingdark.geektrans.tools.SoundPlayerService;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -217,14 +218,16 @@ public class TransActivity extends Activity {
                     textViewToastWithSoundTextResult.setText(finalResult.getStringResult());
                     // 添加自定义气泡声音点击事件
                     viewToastWitSound.findViewById(R.id.buttonPlaySound).setOnClickListener(new View.OnClickListener() {
+                        ArrayList<String> soundURLs = finalResult.getSoundURLs();
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent();
-                            intent.putStringArrayListExtra("soundList", finalResult.getSoundURLs());
+                            intent.putStringArrayListExtra("soundList", soundURLs);
                             intent.setClass(TransActivity.this, SoundPlayerService.class);
                             startService(intent);
-                            stopService(intent);
-
+                            soundURLs.add(soundURLs.remove(0));
+                            toast.pause();
+                            toast.start();
                         }
                     });
                     toast.setView(viewToastWitSound).setDuration(toastTime).show();

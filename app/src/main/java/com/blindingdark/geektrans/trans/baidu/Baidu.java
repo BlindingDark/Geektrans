@@ -36,22 +36,12 @@ public class Baidu implements TransEngine {
 
     @Override
     public void trans(String req, Handler handler, SharedPreferences preferences) {
-        //new Thread(new TransReqThread(new BaiduTransReq(this.baiduSettings, req),handler,preferences)).start();
         this.setPreferences(preferences);
         this.trans(req, handler);
     }
 
     @Override
     public void trans(final String req, final Handler handler) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Result result = new BaiduTransReq(baiduSettings, req).getTrans();
-                Message message = new Message();
-                message.what = result.getWhat();
-                message.obj = result;
-                handler.sendMessage(message);
-            }
-        }).start();
+        new BaiduTransReq(baiduSettings, req, handler).trans();
     }
 }

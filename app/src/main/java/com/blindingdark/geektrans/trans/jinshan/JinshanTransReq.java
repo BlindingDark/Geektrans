@@ -69,29 +69,14 @@ public class JinshanTransReq {
                                         sounds.add(sound);
                                     }
                                 }
-
                             }
-                            if (sounds.isEmpty()) {
-                                beanResult.setWhat(TransActivity.normalToast);
-                            } else {
-                                beanResult.setWhat(TransActivity.haveSoundToast);
-                                beanResult.setSoundURLs(sounds);
-                            }
-
-                            beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
-
-                            beanResult.setStringResult(res.toString());
-
-                            Message message = new Message();
-                            message.what = beanResult.getWhat();
-                            message.obj = beanResult;
-                            handler.sendMessage(message);
-
+                            callback(sounds, res.toString());
                         }
 
                         @Override
                         public void onFailure(Call<JinshanJSONBean> call, Throwable t) {
                             Log.d("retrofitOnFailure", t.toString());
+                            callbackOnFailure();
                         }
                     });
         } else {
@@ -112,34 +97,49 @@ public class JinshanTransReq {
                                         sounds.add(sound);
                                     }
                                 }
-
                             }
-
-                            if (sounds.isEmpty()) {
-                                beanResult.setWhat(TransActivity.normalToast);
-                            } else {
-                                beanResult.setWhat(TransActivity.haveSoundToast);
-                                beanResult.setSoundURLs(sounds);
-                            }
-
-                            beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
-
-                            beanResult.setStringResult(res.toString());
-
-                            Message message = new Message();
-                            message.what = beanResult.getWhat();
-                            message.obj = beanResult;
-                            handler.sendMessage(message);
-
+                            callback(sounds, res.toString());
                         }
 
                         @Override
                         public void onFailure(Call<JinshanJSONBeanZh> call, Throwable t) {
                             Log.d("retrofitOnFailure", t.toString());
+                            callbackOnFailure();
                         }
                     });
         }
 
     }
+
+    private void callback(List<String> sounds, String stringResult) {
+        if (sounds.isEmpty()) {
+            beanResult.setWhat(TransActivity.normalToast);
+        } else {
+            beanResult.setWhat(TransActivity.haveSoundToast);
+            beanResult.setSoundURLs(sounds);
+        }
+
+        beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
+
+        beanResult.setStringResult(stringResult);
+
+        sendMsg();
+    }
+
+    private void callbackOnFailure() {
+        beanResult.setWhat(TransActivity.normalToast);
+        beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
+        beanResult.setStringResult("出现了点意外... 翻译失败...");
+
+        sendMsg();
+    }
+
+    private void sendMsg() {
+        Message message = new Message();
+        message.what = beanResult.getWhat();
+        message.obj = beanResult;
+        handler.sendMessage(message);
+    }
+
 
 }

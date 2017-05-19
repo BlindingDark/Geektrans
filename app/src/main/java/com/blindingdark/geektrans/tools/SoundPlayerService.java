@@ -17,9 +17,11 @@ public class SoundPlayerService extends Service {
     class SoundPlayer implements Runnable {
 
         List<String> soundList;
+        int startId;
 
-        public SoundPlayer(List<String> soundList) {
+        public SoundPlayer(List<String> soundList, int startId) {
             this.soundList = soundList;
+            this.startId = startId;
         }
 
         public SoundPlayer setSoundList(List<String> soundList) {
@@ -61,6 +63,12 @@ public class SoundPlayerService extends Service {
                     return false;
                 }
             });
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
             try {
                 player.setDataSource(this.soundList.get(i));
                 player.prepare();
@@ -80,12 +88,13 @@ public class SoundPlayerService extends Service {
         @Override
         public void run() {
             this.playOneSoundFromList();
+            stopSelf(startId);
         }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(new SoundPlayer(intent.getStringArrayListExtra("soundList"))).start();
+        new Thread(new SoundPlayer(intent.getStringArrayListExtra("soundList"), startId)).start();
         return super.onStartCommand(intent, flags, startId);
     }
 
