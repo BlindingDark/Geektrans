@@ -38,7 +38,7 @@ public class JinshanTransReq {
     public JinshanTransReq(JinshanSettings jinshanSettings, String req, Handler handler) {
         beanResult.setOriginalReq(req);
         this.jinshanSettings = jinshanSettings;
-        this.req = req;
+        this.req = req.toLowerCase();
         this.handler = handler;
     }
 
@@ -121,6 +121,9 @@ public class JinshanTransReq {
 
         beanResult.setFromEngineName(Jinshan.ENGINE_NAME);
 
+        if (TextUtils.isEmpty(stringResult)) {
+            stringResult = "金山词霸未得到翻译结果";
+        }
         beanResult.setStringResult(stringResult);
 
         sendMsg();

@@ -4,15 +4,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 
-import com.blindingdark.geektrans.api.TransReq;
 import com.blindingdark.geektrans.bean.Result;
 import com.blindingdark.geektrans.tools.MD5;
 import com.blindingdark.geektrans.trans.baidu.bean.BaiduJSONBean;
 import com.blindingdark.geektrans.trans.baidu.bean.BaiduSettings;
 import com.blindingdark.geektrans.trans.baidu.bean.TransResult;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import retrofit2.Call;
