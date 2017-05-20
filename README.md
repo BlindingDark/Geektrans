@@ -38,4 +38,6 @@ Q: 我想请开发者喝茶。
 A: 冷静！如果 10 分钟以后你依然无法克制住这种冲动，可以前往开发者的[简书](http://www.jianshu.com/users/ea4015fcb048/latest_articles)，对我的技术/非技术文章进行打赏。
 
 特殊权限 (Special Permissions) 兼容库 (Apache Licene 2.0)：
-https://github.com/czy1121/settingscompat
+https://github.com/czy1121/settingscompat  
+Retrofit: Type-safe HTTP client for Android and Java by Square, Inc. (Apache Licene 2.0):
+https://github.com/square/retrofit
