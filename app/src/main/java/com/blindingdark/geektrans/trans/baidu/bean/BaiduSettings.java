@@ -22,8 +22,8 @@ public class BaiduSettings {
     }
 
     public BaiduSettings(SharedPreferences preferences) {
-        this.baiduAppId = preferences.getString(BaiduSettingsString.baiduAppId, "2015063000000001");
-        this.baiduKey = preferences.getString(BaiduSettingsString.baiduKey, "12345678");
+        this.baiduAppId = preferences.getString(BaiduSettingsString.baiduAppId, "20160822000027207");
+        this.baiduKey = preferences.getString(BaiduSettingsString.baiduKey, "ME5M0m7S6tepryI_PUU7");
         if (TextUtils.isEmpty(baiduAppId) || TextUtils.isEmpty(baiduKey)) {
             this.baiduAppId = "20160822000027207";
             this.baiduKey = "ME5M0m7S6tepryI_PUU7";
