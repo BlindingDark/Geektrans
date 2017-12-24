@@ -21,7 +21,11 @@ public class MyStringUnits {
      * @return
      */
     public static String filterBlankSpace(String str) {
-        return str.trim().replaceAll("\\s+", " ");
+        if (null == str) {
+            return "";
+        } else {
+            return str.trim().replaceAll("\\s+", " ");
+        }
     }
 
     public static boolean isASCII(String str) {

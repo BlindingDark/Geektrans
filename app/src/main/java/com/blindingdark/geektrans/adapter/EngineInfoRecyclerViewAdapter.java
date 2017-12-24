@@ -85,7 +85,7 @@ public class EngineInfoRecyclerViewAdapter extends android.support.v7.widget.Rec
         // 引擎选择
 
         // 现在所选的引擎包名
-        String nowTransEngine = sharedPreferences.getString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.YOUDAO_TRANS_ENGINE);
+        String nowTransEngine = sharedPreferences.getString(StringMainSettings.NOW_TRANS_ENGINE, StringMainSettings.DEFAULT_NOW_TRANS_ENGINE);
         // 如果当前显示的引擎是默认引擎
         if (nowTransEngine.equals(info.getEnginePackageName())) {
             engineSettingsViewHolder.checkBox.setChecked(true);

@@ -11,7 +11,8 @@ public class SeqMainSettings {
 
     public static Set<String> getDefaultEngines() {
         Set<String> DEFAULT_ENGINES = new HashSet<>();
-        DEFAULT_ENGINES.add(StringMainSettings.YOUDAO_TRANS_ENGINE);
+        DEFAULT_ENGINES.add(StringMainSettings.JINSHAN_TRANS_ENGINE);
+        DEFAULT_ENGINES.add(StringMainSettings.BAIDU_TRANS_ENGINE);
 
         return DEFAULT_ENGINES;
     }
@@ -21,7 +22,7 @@ public class SeqMainSettings {
         ALL_ENGINES.add(StringMainSettings.YOUDAO_TRANS_ENGINE);
         ALL_ENGINES.add(StringMainSettings.JINSHAN_TRANS_ENGINE);
         ALL_ENGINES.add(StringMainSettings.BAIDU_TRANS_ENGINE);
-        //ALL_ENGINES.add(StringMainSettings.BING_TRANS_ENGINE);
+        // ALL_ENGINES.add(StringMainSettings.BING_TRANS_ENGINE);
 
         return ALL_ENGINES;
     }

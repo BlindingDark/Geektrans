@@ -12,15 +12,16 @@ public class StringMainSettings {
     public static final String NOW_ENGINE_LIST = "NOW_ENGINE_LIST";
     public static final String NOW_SOUND_ENGINE_LIST = "NOW_SOUND_ENGINE_LIST";
     public static final String DEFAULT_SOUND_ENGINE = "DEFAULT_SOUND_ENGINE";
-    public static final String YOUDAO_TRANS_ENGINE = Youdao.ENGINE_PACKAGE_NAME;
-    public static final String BAIDU_TRANS_ENGINE = Baidu.ENGINE_PACKAGE_NAME;
-    public static final String JINSHAN_TRANS_ENGINE = Jinshan.ENGINE_PACKAGE_NAME;
-    public static final String BING_TRANS_ENGINE = Bing.ENGINE_PACKAGE_NAME;
     public static final String TOAST_TIME = ".TOAST_TIME";
     public static final String DEFAULT_TOAST_TIME = "DEFAULT_TOAST_TIME";
     public static final String IS_AUTO_COPY_OPEN = "IS_AUTO_COPY_OPEN";
     public static final String NOW_TOAST_STYLE = "NOW_TOAST_STYLE";
     public static final String LONG_CLICK_TOAST_ACT = "LONG_CLICK_TOAST_ACT";
 
+    public static final String YOUDAO_TRANS_ENGINE = Youdao.ENGINE_PACKAGE_NAME;
+    public static final String BAIDU_TRANS_ENGINE = Baidu.ENGINE_PACKAGE_NAME;
+    public static final String JINSHAN_TRANS_ENGINE = Jinshan.ENGINE_PACKAGE_NAME;
+    public static final String BING_TRANS_ENGINE = Bing.ENGINE_PACKAGE_NAME;
 
+    public static final String DEFAULT_NOW_TRANS_ENGINE = JINSHAN_TRANS_ENGINE;
 }

@@ -67,7 +67,7 @@ public class TransActivity extends Activity {
 
         nowTransEngine = preferences
                 .getString(StringMainSettings.NOW_TRANS_ENGINE,
-                        StringMainSettings.YOUDAO_TRANS_ENGINE);
+                        StringMainSettings.DEFAULT_NOW_TRANS_ENGINE); // 默认翻译引擎
 
         defaultTransSet = SeqMainSettings.getDefaultEngines();
         // 得到当前已添加的引擎列表
