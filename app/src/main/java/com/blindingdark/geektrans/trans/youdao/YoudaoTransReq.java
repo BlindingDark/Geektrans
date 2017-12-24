@@ -17,12 +17,6 @@ import com.youdao.sdk.ydtranslate.TranslateParameters;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 /**
  * Created by BlindingDark on 2016/8/20 0020.
  */
@@ -59,7 +53,22 @@ public class YoudaoTransReq {
             @Override
             public void onError(TranslateErrorCode translateErrorCode, String s) {
                 beanResult.setWhat(TransActivity.normalToast);
-                beanResult.setStringResult(translateErrorCode.toString());
+                String errorMessage = "";
+                int errorCode = translateErrorCode.getCode();
+
+                switch (errorCode) {
+                    case 101:
+                        errorMessage = "请确认有道密钥已经正确填写了哦～";
+                        break;
+                    case 108:
+                        errorMessage = "有道密钥不对哦～";
+                        break;
+                    default:
+                        errorMessage = "有道翻译姬出错啦～";
+                        break;
+                }
+
+                beanResult.setStringResult(errorMessage);
                 sendMsg();
             }
 

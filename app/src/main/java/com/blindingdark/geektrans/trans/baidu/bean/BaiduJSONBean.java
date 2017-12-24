@@ -4,10 +4,10 @@ package com.blindingdark.geektrans.trans.baidu.bean;
  * Created by blindingdark on 17-5-19.
  */
 
-import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class BaiduJSONBean {
 

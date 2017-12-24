@@ -44,11 +44,6 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         editTextKey.setText(key);
         editTextKey.addTextChangedListener(keyTextWatcher);
 
-        editTextKeyfrom = (EditText) findViewById(R.id.edtTxtApiKey);
-        String keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "");
-        editTextKeyfrom.setText("");
-        editTextKeyfrom.addTextChangedListener(keyfromTextWatcher);
-
         editTextDivLine = (EditText) findViewById(R.id.edtTxtDivisionLine);
         String divLine = preferences.getString(YoudaoSettingsString.divisionLine, YoudaoSettingsString.defaultDivLine);
         editTextDivLine.setText(divLine);
@@ -102,24 +97,6 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
             editor.putString(YoudaoSettingsString.youdaoKey, editTextKey.getText().toString());
-            editor.commit();
-        }
-    };
-    TextWatcher keyfromTextWatcher = new TextWatcher() {
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            editor.putString(YoudaoSettingsString.youdaoKeyfrom, editTextKeyfrom.getText().toString());
             editor.commit();
         }
     };

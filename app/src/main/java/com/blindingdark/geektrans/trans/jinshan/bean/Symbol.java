@@ -6,12 +6,12 @@ package com.blindingdark.geektrans.trans.jinshan.bean;
 
 import android.text.TextUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.blindingdark.geektrans.tools.MyStringUnits;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Symbol {
 
