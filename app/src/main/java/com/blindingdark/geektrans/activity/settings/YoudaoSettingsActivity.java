@@ -44,9 +44,9 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         editTextKey.setText(key);
         editTextKey.addTextChangedListener(keyTextWatcher);
 
-        editTextKeyfrom = (EditText) findViewById(R.id.edtTxtApiKeyfrom);
+        editTextKeyfrom = (EditText) findViewById(R.id.edtTxtApiKey);
         String keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "");
-        editTextKeyfrom.setText(keyfrom);
+        editTextKeyfrom.setText("");
         editTextKeyfrom.addTextChangedListener(keyfromTextWatcher);
 
         editTextDivLine = (EditText) findViewById(R.id.edtTxtDivisionLine);
@@ -103,7 +103,6 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
             editor.putString(YoudaoSettingsString.youdaoKey, editTextKey.getText().toString());
             editor.commit();
-
         }
     };
     TextWatcher keyfromTextWatcher = new TextWatcher() {
@@ -141,7 +140,6 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
             editor.putString(YoudaoSettingsString.divisionLine, editTextDivLine.getText().toString());
             editor.commit();
-
         }
     };
 
@@ -166,13 +164,11 @@ public class YoudaoSettingsActivity extends AppCompatActivity {
                 editor.putString(YoudaoSettingsString.youdaoToastTime, time);
                 editor.commit();
             }
-
-
         }
     };
 
     public void youdaoLogoClick(View view) {
-        Uri uri = Uri.parse("http://fanyi.youdao.com/openapi?path=data-mode");
+        Uri uri = Uri.parse("http://ai.youdao.com/doc.s");
         startActivity(new Intent(Intent.ACTION_VIEW,uri));
     }
 }

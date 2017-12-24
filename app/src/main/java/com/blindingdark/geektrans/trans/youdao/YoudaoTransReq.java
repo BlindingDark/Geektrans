@@ -5,11 +5,16 @@ import android.os.Message;
 
 import com.blindingdark.geektrans.activity.TransActivity;
 import com.blindingdark.geektrans.bean.Result;
-import com.blindingdark.geektrans.trans.youdao.bean.YoudaoJSONBean;
 import com.blindingdark.geektrans.trans.youdao.bean.YoudaoSettings;
+import com.blindingdark.geektrans.trans.youdao.bean.YoudaoTransRes;
+import com.youdao.sdk.app.Language;
+import com.youdao.sdk.app.LanguageUtils;
+import com.youdao.sdk.ydonlinetranslate.Translator;
+import com.youdao.sdk.ydtranslate.Translate;
+import com.youdao.sdk.ydtranslate.TranslateErrorCode;
+import com.youdao.sdk.ydtranslate.TranslateListener;
+import com.youdao.sdk.ydtranslate.TranslateParameters;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,68 +40,46 @@ public class YoudaoTransReq {
     }
 
     public void trans() {
-        String youdaoTransURL = "http://fanyi.youdao.com/";
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(youdaoTransURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        YoudaoAPI api = retrofit.create(YoudaoAPI.class);
-        api.getResult(query,
-                youdaoSettings.getKey(),
-                youdaoSettings.getKeyfrom())
-                .enqueue(new Callback<YoudaoJSONBean>() {
-                    @Override
-                    public void onResponse(Call<YoudaoJSONBean> call, Response<YoudaoJSONBean> response) {
-                        YoudaoJSONBean res = response.body();
-                        String errorCode = res.getErrorCode().toString();
-                        switch (errorCode) {
-                            case "0": {
-                                List<String> sounds = res.getSoundURLs();
-                                if (sounds.isEmpty()) {
-                                    beanResult.setWhat(TransActivity.normalToast);
-                                } else {
-                                    beanResult.setWhat(TransActivity.haveSoundToast);
-                                    beanResult.setSoundURLs(sounds);
-                                }
-                                beanResult.setStringResult(res.toString(youdaoSettings.getDivisionLine()));
-                                break;
-                            }
-                            case "20":
-                                beanResult.setWhat(TransActivity.normalToast);
-                                beanResult.setStringResult("要翻译的文本过长");
-                                break;
-                            case "30":
-                                beanResult.setWhat(TransActivity.normalToast);
-                                beanResult.setStringResult("无法进行有效的翻译");
-                                break;
-                            case "40":
-                                beanResult.setWhat(TransActivity.normalToast);
-                                beanResult.setStringResult("不支持的语言类型");
-                                break;
-                            case "50":
-                                beanResult.setWhat(TransActivity.normalToast);
-                                beanResult.setStringResult("无效的key");
-                                break;
-                            case "60":
-                                beanResult.setWhat(TransActivity.normalToast);
-                                beanResult.setStringResult("无词典结果");
-                                break;
-                            default:
-                                beanResult.setWhat(TransActivity.normalToast);
-                                beanResult.setStringResult("");
-                                break;
-                        }
-                        sendMsg();
-                    }
+        //查词对象初始化，请设置source参数为app对应的名称（英文字符串）
+        Language langFrom = LanguageUtils.getLangByName("自动");
+        //若设置为自动，则查询自动识别源语言，自动识别不能保证完全正确，最好传源语言类型
+        //Language langFrom = LanguageUtils.getLangByName("英文");
+        Language langTo = LanguageUtils.getLangByName("中文");
 
-                    @Override
-                    public void onFailure(Call<YoudaoJSONBean> call, Throwable t) {
-                        beanResult.setWhat(TransActivity.normalToast);
-                        beanResult.setStringResult("出现了点意外... 翻译失败...");
+        TranslateParameters tps = new TranslateParameters.Builder()
+                .source("GeekTrans")
+                .from(langFrom).to(langTo).build();
 
-                        sendMsg();
-                    }
-                });
+        Translator translator = Translator.getInstance(tps);
+
+        //查询，返回两种情况，一种是成功，相关结果存储在result参数中，另外一种是失败，失败信息放在TranslateErrorCode 是一个枚举类，整个查询是异步的，为了简化操作，回调都是在主线程发生。
+
+        translator.lookup(query, "GeekTrans", new TranslateListener() {
+
+            @Override
+            public void onError(TranslateErrorCode translateErrorCode, String s) {
+                beanResult.setWhat(TransActivity.normalToast);
+                beanResult.setStringResult(translateErrorCode.toString());
+                sendMsg();
+            }
+
+            @Override
+            public void onResult(Translate translate, String input, String requestId) {
+                YoudaoTransRes youdaoTransRes = new YoudaoTransRes(translate);
+
+                List<String> sounds = youdaoTransRes.getSoundURLs();
+                if (sounds.isEmpty()) {
+                    beanResult.setWhat(TransActivity.normalToast);
+                } else {
+                    beanResult.setWhat(TransActivity.haveSoundToast);
+                    beanResult.setSoundURLs(sounds);
+                }
+
+                beanResult.setStringResult(youdaoTransRes.toString(youdaoSettings.getDivisionLine()));
+
+                sendMsg();
+            }
+        });
     }
 
     private void sendMsg() {

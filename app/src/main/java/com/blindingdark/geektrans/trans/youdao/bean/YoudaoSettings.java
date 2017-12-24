@@ -3,7 +3,9 @@ package com.blindingdark.geektrans.trans.youdao.bean;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import com.blindingdark.geektrans.global.MyApplication;
 import com.blindingdark.geektrans.trans.youdao.YoudaoSettingsString;
+import com.youdao.sdk.app.YouDaoApplication;
 
 /**
  * Created by BlindingDark on 2016/8/21 0021.
@@ -14,14 +16,11 @@ public class YoudaoSettings {
     String divisionLine = "";
 
     public YoudaoSettings(SharedPreferences preferences) {
-        key = preferences.getString(YoudaoSettingsString.youdaoKey, "1063467812");
-        keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "geektrans");
-        if (TextUtils.isEmpty(key) || TextUtils.isEmpty(keyfrom)) {
-            key = "1063467812";
-            keyfrom = "geektrans";
-        }
+        key = preferences.getString(YoudaoSettingsString.youdaoKey, "");
+        keyfrom = preferences.getString(YoudaoSettingsString.youdaoKeyfrom, "GeekTrans");
         divisionLine = preferences.getString(YoudaoSettingsString.divisionLine, YoudaoSettingsString.defaultDivLine);
 
+        YouDaoApplication.init(MyApplication.getContextObject(), key);
     }
 
     public YoudaoSettings(String key, String keyfrom, String divisionLine) {
