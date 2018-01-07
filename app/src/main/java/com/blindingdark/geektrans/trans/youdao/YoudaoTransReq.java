@@ -60,8 +60,56 @@ public class YoudaoTransReq {
                     case 101:
                         errorMessage = "请确认有道密钥已经正确填写了哦～";
                         break;
+                    case 102:
+                        errorMessage = "不支持的语言类型";
+                        break;
+                    case 103:
+                        errorMessage = "翻译文本过长";
+                        break;
+                    case 104:
+                        errorMessage = "不支持的API类型";
+                        break;
+                    case 105:
+                        errorMessage = "不支持的签名类型";
+                        break;
+                    case 106:
+                        errorMessage = "不支持的响应类型";
+                        break;
+                    case 107:
+                        errorMessage = "不支持的传输加密类型";
+                        break;
                     case 108:
                         errorMessage = "有道密钥不对哦～";
+                        break;
+                    case 109:
+                        errorMessage = "batchLog格式不正确";
+                        break;
+                    case 110:
+                        errorMessage = "无相关服务的有效实例～\n注意要同时创建并绑定我的应用和翻译实例！";
+                        break;
+                    case 111:
+                        errorMessage = "开发者账号无效，可能是账号为欠费状态";
+                        break;
+                    case 201:
+                        errorMessage = "解密失败，可能为DES,BASE64,URLDecode的错误";
+                        break;
+                    case 202:
+                        errorMessage = "签名检验失败";
+                        break;
+                    case 203:
+                        errorMessage = "访问IP地址不在可访问IP列表";
+                        break;
+                    case 301:
+                        errorMessage = "辞典查询失败";
+                        break;
+                    case 302:
+                        errorMessage = "翻译查询失败";
+                        break;
+                    case 303:
+                        errorMessage = "服务端的其它异常";
+                        break;
+                    case 401:
+                        errorMessage = "账户已经欠费";
                         break;
                     default:
                         errorMessage = "有道翻译姬出错啦～";

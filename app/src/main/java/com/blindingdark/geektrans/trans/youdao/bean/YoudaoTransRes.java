@@ -106,12 +106,13 @@ public class YoudaoTransRes {
 
         // web explain start
         List<WebExplain> webExplains = translate.getWebExplains();
-        List<String> webExp = new ArrayList<>();
-        for (WebExplain webExplain : webExplains) {
-           webExp.add(formatWebExplain(webExplain));
-        }
+        if (!EnumUtils.isEmpty(webExplains)) {
+            List<String> webExp = new ArrayList<>();
 
-        if (!EnumUtils.isEmpty(webExp)) {
+            for (WebExplain webExplain : webExplains) {
+                webExp.add(formatWebExplain(webExplain));
+            }
+
             results.add(TextUtils.join("\n", webExp));
         }
         // web explain end
@@ -135,6 +136,10 @@ public class YoudaoTransRes {
     }
 
     private String formatWebExplain(WebExplain webExplain) {
+        if (null == webExplain) {
+            return "";
+        }
+
         String key = webExplain.getKey();
         String means = TextUtils.join("；", webExplain.getMeans());
 
